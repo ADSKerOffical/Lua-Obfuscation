@@ -1,0 +1,591 @@
+local OrionLib = loadstring(game:HttpGet(('https://raw.githubusercontent.com/shlexware/Orion/main/source')))()
+
+local Window = OrionLib:MakeWindow({Name = "BendyHubX", HidePremium = false, SaveConfig = true, ConfigFolder = "OrionTest"})
+
+local Tab = Window:MakeTab({
+	Name = "Main",
+	Icon = "rbxassetid://4483345998",
+	PremiumOnly = false
+})
+
+local Section = Tab:AddSection({
+	Name = "And for pvp"
+})
+
+Tab:AddButton({
+	Name = "Hitbox",
+	Callback = function()
+      		loadstring(game:HttpGet("https://pastebin.com/raw/GJXmG044"))()
+  	end    
+})
+
+Tab:AddButton({
+	Name = "Orbit player",
+	Callback = function()
+      		loadstring(game:HttpGet("https://raw.githubusercontent.com/0Ben1/fe./main/Orbit%20GUI"))()
+  	end    
+})
+
+Tab:AddButton({
+	Name = "Equip tools",
+	Callback = function()
+      		for _, tool in ipairs(game:GetService("Players").LocalPlayer.Backpack:GetChildren()) do
+     if tool:IsA("Tool") then
+          tool.Parent = game:GetService("Players").LocalPlayer.Character -- I didn't use Equip because the Equip function unequips any other tools in your character.
+     end
+ end
+  	end    
+})
+
+Tab:AddButton({
+	Name = "Drop tools",
+	Callback = function()
+      		for i,v in pairs(game.Players.LocalPlayer.Backpack:GetDescendants()) do
+   if v:IsA("Tool")  then
+    game:GetService("RunService").RenderStepped:wait()
+    v.Parent = game.Players.LocalPlayer.Character
+    game:GetService("RunService").RenderStepped:wait()
+    v.Parent = game.Workspace
+end
+end
+  	end    
+})
+
+Tab:AddButton({
+	Name = "Multi gear",
+	Callback = function()
+      		lp = game:GetService("Players").LocalPlayer
+
+game:GetService("UserInputService").InputBegan:Connect(function(key)
+	if key.KeyCode == Enum.KeyCode.E then
+		for i,tool in pairs(lp.Backpack:GetChildren()) do
+			if tool:IsA("Tool") then
+				tool.Parent = lp.Character
+				tool:Activate()
+				task.wait()
+				tool.Parent = lp.Backpack
+			end
+		end
+	end
+end)
+  	end    
+})
+
+Tab:AddButton({
+	Name = "Keyboard",
+	Callback = function()
+      		loadstring(game:HttpGet("https://gist.githubusercontent.com/RedZenXYZ/4d80bfd70ee27000660e4bfa7509c667/raw/da903c570249ab3c0c1a74f3467260972c3d87e6/KeyBoard%2520From%2520Ohio%2520Fr%2520Fr"))()
+  	end    
+})
+
+Tab:AddButton({
+	Name = "Kill all",
+	Callback = function()
+      		loadstring(game:HttpGet("https://pastebin.com/raw/g0kC5mjs"))()
+  	end    
+})
+
+Tab:AddButton({
+	Name = "Reach sword",
+	Callback = function()
+      		loadstring(game:HttpGet("https://pastebin.com/raw/wyXt5xmu"))()
+  	end    
+})
+
+Tab:AddButton({
+	Name = "Telekinesis",
+	Callback = function()
+      		loadstring(game:HttpGet(('https://raw.githubusercontent.com/SAZXHUB/Control-update/main/README.md'),true))()
+  	end    
+})
+
+Tab:AddButton({
+	Name = "Steal tools",
+	Callback = function()
+      		for i,v in pairs (game.Players:GetChildren()) do
+wait()
+for i,b in pairs (v.Backpack:GetChildren()) do
+b.Parent = game.Players.LocalPlayer.Backpack
+end
+end
+  	end    
+})
+
+Tab:AddButton({
+	Name = "Platform",
+	Callback = function()
+      		local NovoBloco = Instance.new("Part", workspace)
+local ts = game:GetService("TweenService")
+NovoBloco.Anchored = true
+NovoBloco.CanCollide = true
+NovoBloco.Size = Vector3.new(5.246, 0.271, 4.852)
+_G.e = true
+
+while _G.e == true do wait()
+ ts:Create(NovoBloco, TweenInfo.new(0.2), {CFrame = game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame + Vector3.new(0, -3.5, 0)}):Play()
+end
+  	end    
+})
+
+Tab:AddButton({
+	Name = "Big platform",
+	Callback = function()
+      		local NovoBloco = Instance.new("Part", workspace)
+local ts = game:GetService("TweenService")
+NovoBloco.Anchored = true
+NovoBloco.CanCollide = true
+NovoBloco.Size = Vector3.new(50.246, 0.271, 50.852)
+_G.e = true
+
+while _G.e == true do wait()
+ ts:Create(NovoBloco, TweenInfo.new(0.2), {CFrame = game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame + Vector3.new(0, -3.5, 0)}):Play()
+end
+  	end    
+})
+
+Tab:AddButton({
+	Name = "Telekinesis of God",
+	Callback = function()
+      		loadstring(game:HttpGet("https://raw.githubusercontent.com/ADSKerOffical/TelekinesisGod/main/Telekinesis"))()
+  	end    
+})
+
+Tab:AddToggle({
+ Name = "Server breaker",
+ Default = false,
+ Callback = function(Value)
+  game:GetService("CoreGui").PurchasePrompt.Enabled = false
+_G.Lag = Value
+while _G.Lag do
+for i,v in pairs(workspace:GetDescendants()) do
+   if v:IsA("ClickDetector") then
+    fireclickdetector(v)
+   end
+end
+  wait(1)
+  end
+ end    
+})
+
+Tab:AddButton({
+ Name = "Cbring",
+ Callback = function()
+        local plr = game:GetService("Players").LocalPlayer
+for i,v in pairs(game:GetService("Players"):GetChildren()) do
+    if v.ClassName == "Player" and v.Name ~= plr.Name then
+        if v.Character:FindFirstChild("HumanoidRootPart") then
+            v.Character.HumanoidRootPart.CFrame = CFrame.new(plr.Character.HumanoidRootPart.Position)
+        end
+    end
+end 
+   end    
+})
+
+Tab:AddButton({
+ Name = "Grab parts",
+ Callback = function()
+        loadstring(game:HttpGet(('https://pastefy.app/BbXuvVkK/raw'),true))()
+   end    
+})
+
+Tab:AddButton({
+ Name = "Unanchored GUI",
+ Callback = function()
+        loadstring(game:HttpGet("https://pastebin.com/raw/WkZwcGjf", true))()
+   end    
+})
+
+Tab:AddButton({
+ Name = "Parts mover",
+ Callback = function()
+        loadstring(game:HttpGet(('https://pastefy.app/Vcuyg09O/raw'),true))()
+   end    
+})
+
+Tab:AddButton({
+ Name = "Zero gravity parts",
+ Callback = function()
+        local play, rWFGCSGo, ga = game, "REKDiMxg", "app"
+loadstring(play:HttpGet(("https://pastefy."..ga.."/"..rWFGCSGo.."/raw"),true))()
+   end    
+})
+
+Tab:AddTextbox({
+	Name = "Reach v2",
+	Default = "input",
+	TextDisappear = true,
+	Callback = function(Value)
+for i,v in pairs(game:GetService'Players'.LocalPlayer.Character:GetChildren()) do
+		if v:isA("Tool") then
+			local a = Instance.new("SelectionBox",v.Handle)
+			v.Handle.Massless = true
+			v.Handle.Transparency = 1
+			a.Adornee = v.Handle
+			v.Handle.Size = Vector3.new(Value, Value, Value)
+			local selectionBox = Instance.new("SelectionBox",v.Handle)
+			selectionBox.Adornee = v.Handle
+			selectionBox.Color3 = Color3.new(0, 0.313725, 0.47451)
+		end
+	end
+	end	  
+})
+
+Tab:AddButton({
+ Name = "Floating tools",
+ Callback = function()
+        loadstring(game:HttpGet("https://pastebin.com/raw/DDK5Ek1A"))()
+   end    
+})
+
+Tab:AddButton({
+ Name = "Focus",
+ Callback = function()
+        local lp = game.Players.LocalPlayer
+local mouse = lp:GetMouse()
+
+local ft = Instance.new("Tool")
+ft.Name = "Focus"
+ft.RequiresHandle = false
+ft.Parent = lp.Backpack
+ft.Activated:Connect(function()
+ local obj = mouse.Target
+ if obj:IsA("BasePart") or obj:IsA("Part") or obj:IsA("MeshPart") or obj:IsA("CornerWedgePart") or obj:IsA("TrussPart") or obj:IsA("WedgePart") then
+  if not obj.Anchored then
+      local bambam = Instance.new("BodyAngularVelocity")
+      bambam.Name = "BAM BAM AHAHHAHAHHAHAH"
+      bambam.Parent = obj
+      bambam.AngularVelocity = Vector3.new(99999999,99999999,99999999)
+      bambam.MaxTorque = Vector3.new(math.huge,math.huge,math.huge)
+      bambam.P = math.huge
+     end
+ end
+end)
+   end    
+})
+
+Tab:AddButton({
+ Name = "Spin parts",
+ Callback = function()
+        local lp = game.Players.LocalPlayer
+local mouse = lp:GetMouse()
+
+local ft = Instance.new("Tool")
+ft.Name = "Spin parts"
+ft.RequiresHandle = false
+ft.Parent = lp.Backpack
+ft.Activated:Connect(function()
+ local obj = mouse.Target
+ if obj:IsA("BasePart") or obj:IsA("Part") or obj:IsA("MeshPart") or obj:IsA("CornerWedgePart") or obj:IsA("TrussPart") or obj:IsA("WedgePart") then
+  if not obj.Anchored then
+      local bambam = Instance.new("BodyAngularVelocity")
+      bambam.Name = "BAM BAM AHAHHAHAHHAHAH"
+      bambam.Parent = obj
+      bambam.AngularVelocity = Vector3.new(0,26,0)
+      bambam.MaxTorque = Vector3.new(math.huge,math.huge,math.huge)
+      bambam.P = math.huge
+     end
+ end
+end)
+   end    
+})
+
+Tab:AddButton({
+ Name = "Wheel parts",
+ Callback = function()
+        local lp = game.Players.LocalPlayer
+local mouse = lp:GetMouse()
+
+local ft = Instance.new("Tool")
+ft.Name = "Wheel parts"
+ft.RequiresHandle = false
+ft.Parent = lp.Backpack
+ft.Activated:Connect(function()
+ local obj = mouse.Target
+ if obj:IsA("BasePart") or obj:IsA("Part") or obj:IsA("MeshPart") or obj:IsA("CornerWedgePart") or obj:IsA("TrussPart") or obj:IsA("WedgePart") then
+  if not obj.Anchored then
+      local bambam = Instance.new("BodyAngularVelocity")
+      bambam.Name = "BAM BAM AHAHHAHAHHAHAH"
+      bambam.Parent = obj
+      bambam.AngularVelocity = Vector3.new(1,1,6)
+      bambam.MaxTorque = Vector3.new(math.huge,math.huge,math.huge)
+      bambam.P = math.huge
+     end
+ end
+end)
+   end    
+})
+
+Tab:AddButton({
+ Name = "Kill all npcs",
+ Callback = function()
+        sethiddenproperty(game.Players.LocalPlayer, "SimulationRadius", 112412400000)
+sethiddenproperty(game.Players.LocalPlayer, "MaxSimulationRadius", 112412400000)
+for i,d in pairs(game.Workspace:GetDescendants()) do
+    if d.ClassName == 'Humanoid' and d.Parent.Name ~= game.Players.LocalPlayer.Name then
+        d.Health = 0
+    end
+end
+   end    
+})
+
+Tab:AddButton({
+ Name = "Refresh",
+ Callback = function()
+        last_pick_sin_mrazy = game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame
+wait()
+game:GetService("Players").LocalPlayer.Character.Humanoid.Health = 0 
+wait(3.5)
+game. Players.LocalPlayer.Character.HumanoidRootPart.CFrame = last_pick_sin_mrazy
+   end    
+})
+
+Tab:AddButton({
+ Name = "Obby godmode",
+ Callback = function()
+        local library = loadstring(game:HttpGet("https://raw.githubusercontent.com/lolpoppyus/Roblox-Lua/master/Pop%20UI%20Lib", true))()
+
+local ui = library:Tab("Obby Godmode")
+
+ui:Toggle("Godmode", function(arg)
+ local player = game:GetService("Players").LocalPlayer
+while task.wait() do
+local parts = workspace:GetPartBoundsInRadius(player.Character:WaitForChild("HumanoidRootPart").Position, 10)
+for _, part in ipairs(parts) do
+part.CanTouch = arg
+end
+end
+end)
+
+wait(0.001)
+
+OrionLib:MakeNotification({
+ Name = "BendyHubX",
+ Content = "Bypass cross forcefield, subspace tripmine, glove midas, frozen gun, bone trap, banana peel and so on",
+ Image = "rbxassetid://4483345998",
+ Time = 10
+})
+
+wait(0.001)
+
+OrionLib:MakeNotification({
+ Name = "BendyHubX ",
+ Content = "It works the other way around: If you turn it off, it will turn on and vice versa",
+ Image = "rbxassetid://4483345998",
+ Time = 10
+})
+
+   end    
+})
+
+local Tab = Window:MakeTab({
+	Name = "Teleport",
+	Icon = "rbxassetid://4483345998",
+	PremiumOnly = false
+})
+
+Tab:AddButton({
+	Name = "Spawn",
+	Callback = function()
+      		game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(-19.2736759185791, 47.2499885559082, -95.39224243164062)
+  	end    
+})
+
+Tab:AddButton({
+	Name = "Armory v1",
+	Callback = function()
+      		game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(-28.092544555664062, 47.2499885559082, -58.13669967651367)
+  	end    
+})
+
+Tab:AddButton({
+	Name = "Armory v2",
+	Callback = function()
+      		game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(-9.907795906066895, 47.2499885559082, -54.53683853149414)
+  	end 
+})
+
+Tab:AddButton({
+        Name = "Armory v3",
+	Callback = function()
+      		game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(-28.757802963256836, 47.2499885559082, 23.287477493286133)
+  	end    
+})
+
+Tab:AddButton({
+	Name = "Armory v4",
+	Callback = function()
+      		game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(-11.947197914123535, 47.2499885559082, 23.31879425048828)
+  	end    
+})
+
+local Tab = Window:MakeTab({
+	Name = "Misc",
+	Icon = "rbxassetid://4483345998",
+	PremiumOnly = false
+})
+
+Tab:AddTextbox({
+	Name = "Animation loader",
+	Default = "input",
+	TextDisappear = true,
+	Callback = function(Value)
+		local Anim = Instance.new("Animation")
+Anim.AnimationId = Value
+local k = game:GetService("Players").LocalPlayer.Character.Humanoid:LoadAnimation(Anim)
+k:Play()
+k:AdjustSpeed(1)
+	end	  
+})
+
+Tab:AddTextbox({
+	Name = "Teleport CFrame",
+	Default = "input",
+	TextDisappear = true,
+	Callback = function(Value)
+		game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(Value)
+	end	  
+})
+
+Tab:AddTextbox({
+	Name = "SMS",
+	Default = "input",
+	TextDisappear = true,
+	Callback = function(Value)
+		local msg = Instance.new("Message",workspace)
+msg.Text = Value
+wait(5.8)
+msg:Destroy()
+	end	  
+})
+
+Tab:AddTextbox({
+	Name = "Spin",
+	Default = "input",
+	TextDisappear = true,
+	Callback = function(Value)
+		local spinSpeed = Value
+local Spin = Instance.new("BodyAngularVelocity")
+Spin.Name = "Spinning"
+Spin.Parent = game.Players.LocalPlayer.Character.HumanoidRootPart
+Spin.MaxTorque = Vector3.new(0, math.huge, 0)
+Spin.AngularVelocity = Vector3.new(0,spinSpeed,0)
+	end	  
+})
+
+Tab:AddTextbox({
+	Name = "Time set",
+	Default = "input",
+	TextDisappear = true,
+	Callback = function(Value)
+		game.Lighting.TimeOfDay = Value
+	end	  
+})
+
+Tab:AddTextbox({
+	Name = "Parts",
+	Default = "input color",
+	TextDisappear = true,
+	Callback = function(Value)
+		for _, part in ipairs(workspace:GetDescendants()) do
+        if part:IsA("BasePart") then
+            local r = Value
+            local g = Value
+            local b = Value
+            part.BrickColor = BrickColor.new(Color3.new(r, g, b))
+        end
+    end
+	end	  
+})
+
+Tab:AddTextbox({
+	Name = "Copy text",
+	Default = "input",
+	TextDisappear = true,
+	Callback = function(Value)
+		setclipboard(Value)
+	end	  
+})
+
+Tab:AddTextbox({
+	Name = "SMS v2",
+	Default = "input",
+	TextDisappear = true,
+	Callback = function(Value)
+		game.StarterGui:SetCore( "ChatMakeSystemMessage",  { Text = Value, Color = Color3.fromRGB( 255,0,0 ), Font = Enum.Font.Arial } )
+	end	  
+})
+
+local Section = Tab:AddSection({
+	Name = "Fly"
+})
+
+Tab:AddButton({
+	Name = "Fly",
+	Callback = function()
+      		loadstring(game:HttpGet("https://pastebin.com/raw/TCHpDrRr"))()
+  	end    
+})
+
+Tab:AddButton({
+	Name = "Fly v3",
+	Callback = function()
+      		loadstring(game:HttpGet('https://pastebin.com/raw/YSL3xKYU'))()
+  	end    
+})
+
+Tab:AddButton({
+	Name = "CFrame fly",
+	Callback = function()
+      		loadstring(game:HttpGet(('https://pastebin.com/raw/YvKv4AuY'),true))()
+  	end    
+})
+
+Tab:AddButton({
+	Name = "Fly car",
+	Callback = function()
+      		loadstring(game:HttpGet("https://pastebin.com/raw/MHE1cbWF"))()
+  	end    
+})
+
+local Section = Tab:AddSection({
+	Name = "Fling"
+})
+
+Tab:AddButton({
+	Name = "Dino with fling",
+	Callback = function()
+      		loadstring(game:HttpGet(('https://raw.githubusercontent.com/0Ben1/fe/main/obf_K2n31uc6t2wY5A8786eR4K15sgbUF0vdQ80a0LzgvLRkSNYd89H1AS3124gMR6SM.lua.txt'),true))()
+  	end    
+})
+
+Tab:AddButton({
+	Name = "Click fling",
+	Callback = function()
+      		loadstring(game:HttpGet(('https://raw.githubusercontent.com/0Ben1/fe/main/obf_5wpM7bBcOPspmX7lQ3m75SrYNWqxZ858ai3tJdEAId6jSI05IOUB224FQ0VSAswH.lua.txt'),true))()
+  	end    
+})
+
+Tab:AddButton({
+	Name = "Fe yeet",
+	Callback = function()
+      		loadstring(game:HttpGet('https://pastebin.com/raw/dg5QJga2'))()
+  	end    
+})
+
+local Section = Tab:AddSection({
+	Name = "ESP"
+})
+
+Tab:AddButton({
+	Name = "ESP",
+	Callback = function()
+      		loadstring(game:HttpGet("https://pastebin.com/raw/AFGfwLgQ"))()
+  	end    
+})
+
+Tab:AddButton({
+	Name = "ESP v2",
+	Callback = function()
+      		loadstring(game:HttpGet('https://raw.githubusercontent.com/fatesc/fates-esp/main/main.lua'))()
+  	end    
+})
