@@ -1,4 +1,4 @@
-local OrionLib = loadstring(game:HttpGet(('https://raw.githubusercontent.com/shlexware/Orion/main/source')))()
+local OrionLib = loadstring(game:HttpGet(('https://raw.githubusercontent.com/ionlyusegithubformcmods/1-Line-Scripts/main/Mobile%20Friendly%20Orion')))()
 
 local Window = OrionLib:MakeWindow({Name = "BendyHubX", HidePremium = false, SaveConfig = true, ConfigFolder = "OrionTest"})
 
@@ -588,4 +588,180 @@ Tab:AddButton({
 	Callback = function()
       		loadstring(game:HttpGet('https://raw.githubusercontent.com/fatesc/fates-esp/main/main.lua'))()
   	end    
+})
+
+local NotificationHolder = loadstring(game:HttpGet("https://raw.githubusercontent.com/BocusLuke/UI/main/STX/Module.Lua"))()
+
+local Notification = loadstring(game:HttpGet("https://raw.githubusercontent.com/BocusLuke/UI/main/STX/Client.Lua"))()
+
+local Tab = Window:MakeTab({
+                    Name = "Bendy scripts",
+                    Icon = "http://www.roblox.com/asset/?id=4483345998",
+                    PremiumOnly = false
+                })
+                
+
+Tab:AddButton({
+ Name = "Mega bazooka Reject",
+ Callback = function()
+        local args = {
+    [1] = "Radius",
+    [2] = 1000000000000000000000000
+}
+
+game:GetService("Players").LocalPlayer.Character.Bazooka.ChangeValue:FireServer(unpack(args))
+   end    
+})
+
+Tab:AddButton({
+ Name = "Mega forcefield",
+ Callback = function()
+        local args = {
+    [1] = true
+}
+
+game:GetService("Players").LocalPlayer.Character:FindFirstChild("Forcefield Generator").Switch:FireServer(unpack(args))
+
+while wait() do
+local args = {
+    [1] = "positive"
+}
+
+game:GetService("Players").LocalPlayer.Character:FindFirstChild("Forcefield Generator").Resize:FireServer(unpack(args))
+end
+   end    
+})
+
+Tab:AddButton({
+ Name = "Multi Stop time",
+ Callback = function()
+        game:GetService("Players").LocalPlayer.Character.Timestop.Stop:FireServer()
+   end    
+})
+
+Tab:AddButton({
+ Name = "Spam guards",
+ Callback = function()
+ while wait() do
+        local args = {
+    [1] = Vector3.new(-39.894683837890625, 44.25, 32.47625732421875)
+}
+
+game:GetService("Players").LocalPlayer.Character.Bodyguards.Summon:FireServer(unpack(args))
+end
+   end    
+})
+
+Tab:AddButton({
+ Name = "Mega wise mystical",
+ Callback = function()
+        while wait() do
+a = math.random(-300, 300)
+b = math.random(-50, 100)
+c = math.random(-300, 300)
+local args = {
+    [1] = Vector3.new(a, b, c)
+}
+
+game:GetService("Players").LocalPlayer.Character:FindFirstChild("Wise Mystical Tree").Create:FireServer(unpack(args))
+end
+   end    
+})
+
+Tab:AddButton({
+ Name = "Spam ghosting bomb",
+ Callback = function()
+ Notification:Notify(
+    {Title = "BendyHubX", Description = "Put on a heart bomb"},
+    {OutlineColor = Color3.fromRGB(80, 80, 80),Time = 5, Type = "default"}
+)
+        while wait() do
+local args = {
+    [1] = Vector3.new(-62.607357025146484, 44.25, 35.89112091064453)
+}
+
+game:GetService("Players").LocalPlayer.Character:FindFirstChild("GhostlyV low cds").Summon:FireServer(unpack(args))
+end
+   end    
+})
+
+Tab:AddButton({
+ Name = "Kill all demonic duck",
+ Callback = function()
+        local plr = game:GetService("Players").LocalPlayer
+for i,v in pairs(game:GetService("Players"):GetChildren()) do
+    if v.ClassName == "Player" and v.Name ~= plr.Name then
+        if v.Character:FindFirstChild("HumanoidRootPart") then
+            v.Character.HumanoidRootPart.CFrame = CFrame.new(plr.Character.HumanoidRootPart.Position)
+        end
+    end
+end
+   end    
+})
+
+Tab:AddButton({
+ Name = "Big Bang Technique",
+ Callback = function()
+ Notification:Notify(
+    {Title = "BendyHubX", Description = "Put on a bomb"},
+    {OutlineColor = Color3.fromRGB(80, 80, 80),Time = 5, Type = "default"}
+)
+        while game:GetService("RunService").RenderStepped:wait() do
+a = math.random(-300, 300)
+b = math.random(-50, 100)
+c = math.random(-300, 300)
+local args = {
+    [1] = Vector3.new(a, b, c),
+    [2] = "supercanny"
+}
+
+game:GetService("Players").LocalPlayer.Character:FindFirstChild("Uncanny Bombs").Plant:FireServer(unpack(args))
+end
+   end    
+})
+
+Tab:AddButton({
+ Name = "Destroy ping",
+ Callback = function()
+ Notification:Notify(
+    {Title = "BendyHubX", Description = "Put on a stop time"},
+    {OutlineColor = Color3.fromRGB(80, 80, 80),Time = 5, Type = "default"}
+)
+        while game:GetService("RunService").RenderStepped:wait() do
+game:GetService("Players").LocalPlayer.Character.Timestop.Stop:FireServer()
+end
+   end    
+})
+
+Tab:AddButton({
+ Name = "FPS Destroy",
+ Callback = function()
+ Notification:Notify(
+    {Title = "BendyHubX", Description = "Put on a tree tool"},
+    {OutlineColor = Color3.fromRGB(80, 80, 80),Time = 5, Type = "default"}
+)
+        for i = 1, 500 do
+a = math.random(-300, 300)
+b = math.random(45, 45)
+c = math.random(-300, 300)
+local args = {
+    [1] = Vector3.new(a, b, c)
+}
+
+game:GetService("Players").LocalPlayer.Character:FindFirstChild("Wise Mystical Tree").Create:FireServer(unpack(args))
+end
+   end    
+})
+
+Tab:AddButton({
+ Name = "Break server",
+ Callback = function()
+ Notification:Notify(
+    {Title = "BendyHubX", Description = "Put on a stop time"},
+    {OutlineColor = Color3.fromRGB(80, 80, 80),Time = 5, Type = "default"}
+)
+        for i = 1, 3000 do
+game:GetService("Players").LocalPlayer.Character.Timestop.Stop:FireServer()
+end
+   end    
 })
