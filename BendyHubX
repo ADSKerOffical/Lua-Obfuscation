@@ -600,13 +600,22 @@ local Tab = Window:MakeTab({
                     PremiumOnly = false
                 })
                 
-
 Tab:AddButton({
- Name = "Mega bazooka Reject",
+ Name = "Bazooka apocalypse",
  Callback = function()
-        local args = {
+        local LP = game.Players.LocalPlayer
+repeat wait() until LP.Character
+for i,v in pairs(LP.Backpack:GetChildren()) do
+   if v.Name == "Bazooka" then
+       v.Parent = LP.Character
+   end
+end
+
+wait(0.5)
+
+local args = {
     [1] = "Radius",
-    [2] = 1000000000000000000000000
+    [2] = 9e99 * 9e99 * 9e9999
 }
 
 game:GetService("Players").LocalPlayer.Character.Bazooka.ChangeValue:FireServer(unpack(args))
@@ -685,8 +694,9 @@ end
    end    
 })
 
-Tab:AddButton({
+Tab:AddToggle({
  Name = "Kill all demonic duck",
+ Default = fasle,
  Callback = function()
         local plr = game:GetService("Players").LocalPlayer
 for i,v in pairs(game:GetService("Players"):GetChildren()) do
@@ -695,6 +705,7 @@ for i,v in pairs(game:GetService("Players"):GetChildren()) do
             v.Character.HumanoidRootPart.CFrame = CFrame.new(plr.Character.HumanoidRootPart.Position)
         end
     end
+    wait()
 end
    end    
 })
