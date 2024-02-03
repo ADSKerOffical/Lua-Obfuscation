@@ -643,7 +643,7 @@ end
 
 Tab:AddTextbox({
  Name = "Multi Stop time",
- Default = "",
+ Default = "Input",
  TextDisappear = true,
  Callback = function(Value)
   for i = 1, Value do
@@ -720,7 +720,7 @@ for i,v in pairs(game:GetService("Players"):GetChildren()) do
         end
     end
 end
-    wait()
+    task.wait()
 end
    end    
 })
