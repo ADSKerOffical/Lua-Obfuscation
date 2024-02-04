@@ -702,7 +702,7 @@ end
 Tab:AddToggle({
  Name = "Kill all demonic duck",
  Default = fasle,
- Callback = function()
+ Callback = function(Value)
 local LP = game.Players.LocalPlayer
 repeat wait() until LP.Character
 for i,v in pairs(LP.Backpack:GetChildren()) do
@@ -713,7 +713,8 @@ end
 
 wait(0.5)
 
-while Value do
+KillAll = Value
+while KillAll do
         local plr = game:GetService("Players").LocalPlayer
 for i,v in pairs(game:GetService("Players"):GetChildren()) do
     if v.ClassName == "Player" and v.Name ~= plr.Name then
@@ -722,7 +723,7 @@ for i,v in pairs(game:GetService("Players"):GetChildren()) do
         end
     end
 end
-    task.wait()
+    task.wait(0.1)
 end
    end    
 })
