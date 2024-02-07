@@ -43,9 +43,7 @@ Tab:AddButton({
 	Callback = function()
       		for i,v in pairs(game.Players.LocalPlayer.Backpack:GetDescendants()) do
    if v:IsA("Tool")  then
-    game:GetService("RunService").RenderStepped:wait()
     v.Parent = game.Players.LocalPlayer.Character
-    game:GetService("RunService").RenderStepped:wait()
     v.Parent = game.Workspace
 end
 end
@@ -398,6 +396,7 @@ end
 Tab:AddButton({
  Name = "Bombing",
  Callback = function()
+while wait() do
         local args = {
     [1] = CFrame.new(-22.66668128967285, 72.62158203125, 4.9330596923828125, -0.145858496427536, -0.14605703949928284, 0.9784644842147827, -0.041150905191898346, 0.9890814423561096, 0.1415075957775116, -0.988449215888977, -0.019624613225460052, -0.15027625858783722),
     [2] = Vector3.new(-2027.2381591796875, -144.80938720703125, -353.1065979003906),
@@ -406,6 +405,7 @@ Tab:AddButton({
 
 game:GetService("Players").LocalPlayer.Character:FindFirstChild("milk tool").SpawnGrenade:FireServer(unpack(args))
    end    
+end
 })
 
 local Section = Tab:AddSection({
@@ -415,6 +415,7 @@ local Section = Tab:AddSection({
 Tab:AddButton({
  Name = "Bombing",
  Callback = function()
+while wait() do
         local args = {
     [1] = CFrame.new(-47.86222839355469, 48.7499885559082, -47.665199279785156, -0.2976866662502289, 0.004063588101416826, 0.9546549916267395, 1.2553194039810478e-08, 0.9999909400939941, -0.0042565613985061646, -0.9546636343002319, -0.0012671096483245492, -0.2976839542388916),
     [2] = Vector3.new(-56.46669006347656, 44.25, 15.805294036865234),
@@ -423,6 +424,7 @@ Tab:AddButton({
 
 game:GetService("Players").LocalPlayer.Character:FindFirstChild("cola v7").SpawnGrenade:FireServer(unpack(args))
    end    
+end
 })
 
 local Section = Tab:AddSection({
