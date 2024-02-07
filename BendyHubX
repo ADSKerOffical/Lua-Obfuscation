@@ -854,3 +854,109 @@ game:GetService("Players").LocalPlayer.Character.Timestop.Stop:FireServer()
 end
    end    
 })
+
+local Section = Tab:AddSection({
+ Name = "Antis"
+})
+
+Tab:AddToggle({
+	Name = "Anti Bazooka",
+	Default = false,
+	Callback = function(Value)
+		polh = Value
+		if polh == true then
+		local plr = game.Players.LocalPlayer
+local char = plr.Character
+SwEF = 1e9999 * 1e9999 * 1e99
+  
+  for _, child in pairs(char:GetChildren()) do
+    if child:IsA("BasePart") then
+      child.Massless = false
+      child.CustomPhysicalProperties = PhysicalProperties.new(SwEF, SwEF, SwEF) 
+    end
+  end
+		end
+		if polh == fasle then
+		local plr = game.Players.LocalPlayer
+local char = plr.Character
+SwEF = 1
+  
+  for _, child in pairs(char:GetChildren()) do
+    if child:IsA("BasePart") then
+      child.Massless = false
+      child.CustomPhysicalProperties = PhysicalProperties.new(SwEF, SwEF, SwEF) 
+    end
+  end
+  end
+	end    
+})
+
+Tab:AddToggle({
+	Name = "Anti Stop Time",
+	Default = false,
+	Callback = function(Value)
+getgenv().TpWalking = Value
+getgenv().Speed = 2
+
+local speaker = game:GetService("Players").LocalPlayer
+local chr = speaker.Character
+local hum = chr and chr:FindFirstChildWhichIsA("Humanoid")
+local hb = game:GetService("RunService").Heartbeat
+while getgenv().TpWalking and chr and hum and hum.Parent do
+    local delta = hb:Wait()
+    if hum.MoveDirection.Magnitude > 0 then
+        chr:TranslateBy(hum.MoveDirection * tonumber(getgenv().Speed) * delta * 10)
+    else
+        chr:TranslateBy(hum.MoveDirection * delta * 100000)
+    end
+end
+	end    
+})
+
+Tab:AddToggle({
+	Name = "Anti Evil Duck",
+	Default = false,
+	Callback = function(Value)
+		Unkill = Value
+while Unkill do
+if Unkill == true then
+local player = game:GetService("Players").LocalPlayer
+local parts = workspace:GetPartBoundsInRadius(player.Character:WaitForChild("HumanoidRootPart").Position, 10)
+for _, part in ipairs(parts) do
+part.CanTouch = fasle
+end
+end
+if Unkill == fasle then
+local player = game:GetService("Players").LocalPlayer
+local parts = workspace:GetPartBoundsInRadius(player.Character:WaitForChild("HumanoidRootPart").Position, 10)
+for _, part in ipairs(parts) do
+part.CanTouch = true
+end
+end
+wait()
+end
+	end    
+})
+
+Tab:AddToggle({
+	Name = "Auto Cheese",
+	Default = false,
+	Callback = function(Value)
+	Seey = Value
+		local LP = game.Players.LocalPlayer
+repeat wait() until LP.Character
+for i,v in pairs(LP.Backpack:GetChildren()) do
+   if v.Name == "Cheese" then
+       v.Parent = LP.Character
+   end
+end
+while Seey do
+   wait()
+   for i,v in pairs (LP.Character:GetChildren()) do
+       if v.Name == "Cheese" then
+           v:Activate()
+       end
+   end
+end
+	end    
+})
