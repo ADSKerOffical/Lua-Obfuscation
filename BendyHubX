@@ -662,6 +662,38 @@ local Tab = Window:MakeTab({
                     Icon = "http://www.roblox.com/asset/?id=4483345998",
                     PremiumOnly = false
                 })
+
+Tab:AddButton({
+ Name = "Get Script tool",
+ Callback = function()
+ last_pick_sin_mrazy = game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame 
+
+game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(-23.423648834228516, 47.24998474121094, 5.212663650512695)
+task.wait()
+local player = game.Players.LocalPlayer -- Получаем локального игрока
+local character = player.Character or player.CharacterAdded:Wait() -- Получаем персонажа игрока
+local humanoidRootPart = character:WaitForChild("HumanoidRootPart") -- Получаем корневую часть персонажа
+local actionRadius = 2 -- Устанавливаем радиус действия
+
+game:GetService("CoreGui").PurchasePrompt.Enabled = false
+
+for i, v in pairs(workspace:GetDescendants()) do
+    if v:IsA("ClickDetector") then
+        local objectPosition = v.Parent.Position -- Позиция объекта с ClickDetector
+        local playerPosition = humanoidRootPart.Position -- Позиция локального игрока
+        local distance = (objectPosition - playerPosition).magnitude -- Расстояние между игроком и объектом
+
+        if distance <= actionRadius then -- Если объект находится в радиусе действия
+            fireclickdetector(v)
+        end
+    end
+end
+task.wait(0.1)
+game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(-25.52592658996582, 55.2499885559082, 23.274351119995117)
+task.wait(0.1)
+game. Players.LocalPlayer.Character.HumanoidRootPart.CFrame = last_pick_sin_mrazy
+   end
+})
                 
 Tab:AddButton({
  Name = "Bazooka apocalypse",
