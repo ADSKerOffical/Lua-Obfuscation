@@ -80,75 +80,257 @@ Tab:AddButton({
   	end    
 })
 
-Tab:AddButton({
-	Name = "Kill all",
-	Callback = function()
-      		loadstring(game:HttpGet("https://pastebin.com/raw/g0kC5mjs"))()
-  	end    
+Tab:AddDropdown({
+	Name = "Player mass",
+	Default = "",
+	Options = {"Very heavy mass", "Normal mass", "Zero mass"},
+	Callback = function(Value)
+		if Value == "Very heavy mass" then
+		local plr = game.Players.LocalPlayer
+local char = plr.Character
+  
+  for _, child in pairs(char:GetChildren()) do
+    if child:IsA("BasePart") then
+      child.Massless = false
+      child.CustomPhysicalProperties = PhysicalProperties.new(math.huge, math.huge, math.huge) 
+    end
+  end
+		end
+		if Value == "Normal mass" then
+		local plr = game.Players.LocalPlayer
+local char = plr.Character
+
+  for _, child in pairs(char:GetChildren()) do
+    if child:IsA("BasePart") then
+      child.Massless = false
+      child.CustomPhysicalProperties = PhysicalProperties.new(1, 0.3, 0.5) 
+    end
+  end
+		end
+		if Value == "Zero mass" then
+		local plr = game.Players.LocalPlayer
+local char = plr.Character
+
+  for _, child in pairs(char:GetChildren()) do
+    if child:IsA("BasePart") then
+      child.Massless = false
+      child.CustomPhysicalProperties = PhysicalProperties.new(0, 0, 0) 
+    end
+  end
+		end
+	end    
 })
 
-Tab:AddButton({
-	Name = "Reach sword",
-	Callback = function()
-      		loadstring(game:HttpGet("https://pastebin.com/raw/wyXt5xmu"))()
-  	end    
+Tab:AddDropdown({
+    Name = "Mass Unanchored Objects",
+    Default = "koop",
+    Options = {"Very heavy parts", "Normal parts", "Very lightweight parts"},
+    Callback = function(Value)
+        if Value == "Very heavy parts" then
+        local Players = game:GetService("Players")
+local function isPartOfPlayerCharacter(part)
+    for _, player in ipairs(Players:GetPlayers()) do
+        local character = player.Character
+        if character and part:IsDescendantOf(character) then
+            return true
+        end
+    end
+    return false
+end
+
+for _, part in ipairs(workspace:GetDescendants()) do
+    if part:IsA("BasePart") and not isPartOfPlayerCharacter(part) then
+        part.CustomPhysicalProperties = PhysicalProperties.new(9e999, 0, 0, 9e999, 9e999)
+    end
+end
+        end
+        if Value == "Normal parts" then
+        local Players = game:GetService("Players")
+local function isPartOfPlayerCharacter(part)
+    for _, player in ipairs(Players:GetPlayers()) do
+        local character = player.Character
+        if character and part:IsDescendantOf(character) then
+            return true
+        end
+    end
+    return false
+end
+
+for _, part in ipairs(workspace:GetDescendants()) do
+    if part:IsA("BasePart") and not isPartOfPlayerCharacter(part) then
+        part.CustomPhysicalProperties = PhysicalProperties.new(1, 1, 1, 1, 1)
+    end
+end
+        end
+        if Value == "Very lightweight parts" then
+        local Players = game:GetService("Players")
+local function isPartOfPlayerCharacter(part)
+    for _, player in ipairs(Players:GetPlayers()) do
+        local character = player.Character
+        if character and part:IsDescendantOf(character) then
+            return true
+        end
+    end
+    return false
+end
+
+for _, part in ipairs(workspace:GetDescendants()) do
+    if part:IsA("BasePart") and not isPartOfPlayerCharacter(part) then
+        part.CustomPhysicalProperties = PhysicalProperties.new(-9e9999, 9e9999, 0, 0, 0)
+    end
+end
+        end
+    end    
+})
+
+Tab:AddDropdown({
+	Name = "Kill all versions",
+	Default = "",
+	Options = {"Kill all", "Multi kill all", "Anti kill friends", "Multi anti kill friends"},
+	Callback = function(Value)
+		if Value == "Kill all" then
+		local range = 1000
+local player = game:GetService("Players").LocalPlayer
+game:GetService("RunService").RenderStepped:Connect(function()
+    local p = game.Players:GetPlayers()
+    for i = 2, #p do local v = p[i].Character
+local tool = player.Character and player.Character:FindFirstChildOfClass("Tool")
+            if tool and tool:FindFirstChild("Handle") then
+                tool:Activate()
+                for i,v in next, v:GetChildren() do
+                    if v:IsA("BasePart") then
+                        firetouchinterest(tool.Handle,v,0)
+                        firetouchinterest(tool.Handle,v,1)
+                    end
+                end
+            end
+        end
+end)
+
+wait()
+
+OrionLib:MakeNotification({
+ Name = "BendyHubX",
+ Content = "This function kills everyone sword, but works in some modes",
+ Image = "rbxassetid://1633620069",
+ Time = 10
+})
+		end
+		if Value == "Multi kill all" then
+		local range = 1000 -- Установка дальности действия
+local player = game:GetService("Players").LocalPlayer
+game:GetService("RunService").RenderStepped:Connect(function()
+    local p = game.Players:GetPlayers()
+    for i = 2, #p do 
+        local v = p[i].Character
+        if player.Character then
+            for _, tool in pairs(player.Character:GetChildren()) do
+                if tool:IsA("Tool") and tool:FindFirstChild("Handle") then
+                    tool:Activate()
+                    for _, part in pairs(v:GetChildren()) do
+                        if part:IsA("BasePart") then
+                            firetouchinterest(tool.Handle, part, 0)
+                            firetouchinterest(tool.Handle, part, 1)
+                        end
+                    end
+                end
+            end
+        end
+    end
+end)
+
+wait()
+
+OrionLib:MakeNotification({
+ Name = "BendyHubX",
+ Content = "This function kills everyone sword, but it works on all the tools you wear",
+ Image = "rbxassetid://1633620069",
+ Time = 10
+})
+		end
+		if Value == "Anti kill friends" then
+		local range = 1000
+local player = game:GetService("Players").LocalPlayer
+
+-- Функция проверки на дружбу
+local function isFriendWith(player1, player2)
+    return player1:IsFriendsWith(player2.UserId)
+end
+
+game:GetService("RunService").RenderStepped:Connect(function()
+    local players = game.Players:GetPlayers()
+    for i = 2, #players do
+        local otherPlayer = players[i]
+        local character = otherPlayer.Character
+        -- Проверяем, не является ли игрок другом
+        if not isFriendWith(player, otherPlayer) then
+            local tool = player.Character and player.Character:FindFirstChildOfClass("Tool")
+            if tool and tool:FindFirstChild("Handle") then
+                tool:Activate()
+                for _, part in next, character:GetChildren() do
+                    if part:IsA("BasePart") then
+                        firetouchinterest(tool.Handle, part, 0)
+                        firetouchinterest(tool.Handle, part, 1)
+                    end
+                end
+            end
+        end
+    end
+end)
+
+wait()
+
+OrionLib:MakeNotification({
+ Name = "BendyHubX",
+ Content = "This function kills everyone sword, besides your friends",
+ Image = "rbxassetid://1633620069",
+ Time = 10
+})
+		end
+		if Value == "Multi anti kill friends" then
+		local range = 1000 -- Установка дальности действия
+local player = game:GetService("Players").LocalPlayer
+game:GetService("RunService").RenderStepped:Connect(function()
+    local players = game.Players:GetPlayers()
+    for i = 2, #players do 
+        local otherPlayer = players[i]
+        -- Проверка на дружбу
+        if not player:IsFriendsWith(otherPlayer.UserId) then
+            local character = otherPlayer.Character
+            if character then
+                local tool = player.Character and player.Character:FindFirstChildOfClass("Tool")
+                for _, tool in pairs(player.Character:GetChildren()) do
+                    if tool:IsA("Tool") and tool:FindFirstChild("Handle") then
+                        tool:Activate()
+                        for _, part in pairs(character:GetChildren()) do
+                            if part:IsA("BasePart") then
+                                firetouchinterest(tool.Handle, part, 0)
+                                firetouchinterest(tool.Handle, part, 1)
+                            end
+                        end
+                    end
+                end
+            end
+        end
+    end
+end)
+
+wait()
+
+OrionLib:MakeNotification({
+ Name = "BendyHubX",
+ Content = "Merger *Multi kill all* and *Anti kill friends*",
+ Image = "rbxassetid://1633620069",
+ Time = 10
+})
+		end
+	end    
 })
 
 Tab:AddButton({
 	Name = "Telekinesis",
 	Callback = function()
       		loadstring(game:HttpGet(('https://raw.githubusercontent.com/SAZXHUB/Control-update/main/README.md'),true))()
-  	end    
-})
-
-Tab:AddButton({
-	Name = "Steal tools",
-	Callback = function()
-      		for i,v in pairs (game.Players:GetChildren()) do
-wait()
-for i,b in pairs (v.Backpack:GetChildren()) do
-b.Parent = game.Players.LocalPlayer.Backpack
-end
-end
-  	end    
-})
-
-Tab:AddButton({
-	Name = "Platform",
-	Callback = function()
-      		local NovoBloco = Instance.new("Part", workspace)
-local ts = game:GetService("TweenService")
-NovoBloco.Anchored = true
-NovoBloco.CanCollide = true
-NovoBloco.Size = Vector3.new(5.246, 0.271, 4.852)
-_G.e = true
-
-while _G.e == true do wait()
- ts:Create(NovoBloco, TweenInfo.new(0.2), {CFrame = game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame + Vector3.new(0, -3.5, 0)}):Play()
-end
-  	end    
-})
-
-Tab:AddButton({
-	Name = "Big platform",
-	Callback = function()
-      		local NovoBloco = Instance.new("Part", workspace)
-local ts = game:GetService("TweenService")
-NovoBloco.Anchored = true
-NovoBloco.CanCollide = true
-NovoBloco.Size = Vector3.new(50.246, 0.271, 50.852)
-_G.e = true
-
-while _G.e == true do wait()
- ts:Create(NovoBloco, TweenInfo.new(0.2), {CFrame = game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame + Vector3.new(0, -3.5, 0)}):Play()
-end
-  	end    
-})
-
-Tab:AddButton({
-	Name = "Telekinesis of God",
-	Callback = function()
-      		loadstring(game:HttpGet("https://raw.githubusercontent.com/ADSKerOffical/TelekinesisGod/main/Telekinesis"))()
   	end    
 })
 
@@ -183,35 +365,6 @@ end
    end    
 })
 
-Tab:AddButton({
- Name = "Grab parts",
- Callback = function()
-        loadstring(game:HttpGet(('https://pastefy.app/BbXuvVkK/raw'),true))()
-   end    
-})
-
-Tab:AddButton({
- Name = "Unanchored GUI",
- Callback = function()
-        loadstring(game:HttpGet("https://pastebin.com/raw/WkZwcGjf", true))()
-   end    
-})
-
-Tab:AddButton({
- Name = "Parts mover",
- Callback = function()
-        loadstring(game:HttpGet(('https://pastefy.app/Vcuyg09O/raw'),true))()
-   end    
-})
-
-Tab:AddButton({
- Name = "Zero gravity parts",
- Callback = function()
-        local play, rWFGCSGo, ga = game, "REKDiMxg", "app"
-loadstring(play:HttpGet(("https://pastefy."..ga.."/"..rWFGCSGo.."/raw"),true))()
-   end    
-})
-
 Tab:AddTextbox({
 	Name = "Reach v2",
 	Default = "input",
@@ -230,13 +383,6 @@ for i,v in pairs(game:GetService'Players'.LocalPlayer.Character:GetChildren()) d
 		end
 	end
 	end	  
-})
-
-Tab:AddButton({
- Name = "Floating tools",
- Callback = function()
-        loadstring(game:HttpGet("https://pastebin.com/raw/DDK5Ek1A"))()
-   end    
 })
 
 Tab:AddButton({
@@ -338,44 +484,6 @@ wait()
 game:GetService("Players").LocalPlayer.Character.Humanoid.Health = 0 
 wait(3.5)
 game. Players.LocalPlayer.Character.HumanoidRootPart.CFrame = last_pick_sin_mrazy
-   end    
-})
-
-Tab:AddButton({
- Name = "Obby godmode",
- Callback = function()
-        local library = loadstring(game:HttpGet("https://raw.githubusercontent.com/lolpoppyus/Roblox-Lua/master/Pop%20UI%20Lib", true))()
-
-local ui = library:Tab("Obby Godmode")
-
-ui:Toggle("Godmode", function(arg)
- local player = game:GetService("Players").LocalPlayer
-while task.wait() do
-local parts = workspace:GetPartBoundsInRadius(player.Character:WaitForChild("HumanoidRootPart").Position, 10)
-for _, part in ipairs(parts) do
-part.CanTouch = arg
-end
-end
-end)
-
-wait(0.001)
-
-OrionLib:MakeNotification({
- Name = "BendyHubX",
- Content = "Bypass cross forcefield, subspace tripmine, glove midas, frozen gun, bone trap, banana peel and so on",
- Image = "rbxassetid://4483345998",
- Time = 10
-})
-
-wait(0.001)
-
-OrionLib:MakeNotification({
- Name = "BendyHubX ",
- Content = "It works the other way around: If you turn it off, it will turn on and vice versa",
- Image = "rbxassetid://4483345998",
- Time = 10
-})
-
    end    
 })
 
