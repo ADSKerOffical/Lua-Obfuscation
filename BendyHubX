@@ -13,41 +13,44 @@ local Section = Tab:AddSection({
 	Name = "And for pvp"
 })
 
-Tab:AddButton({
-	Name = "Hitbox",
-	Callback = function()
-      		loadstring(game:HttpGet("https://pastebin.com/raw/GJXmG044"))()
-  	end    
-})
-
-Tab:AddButton({
-	Name = "Orbit player",
-	Callback = function()
-      		loadstring(game:HttpGet("https://raw.githubusercontent.com/0Ben1/fe./main/Orbit%20GUI"))()
-  	end    
-})
-
-Tab:AddButton({
-	Name = "Equip tools",
-	Callback = function()
-      		for _, tool in ipairs(game:GetService("Players").LocalPlayer.Backpack:GetChildren()) do
+Tab:AddDropdown({
+	Name = "Tools control",
+	Default = "1",
+	Options = {"Equip tools", "Drop tools", "Delete tools"},
+	Callback = function(Value)
+		if Value == "Equip tools" the
+for _, tool in ipairs(game:GetService("Players").LocalPlayer.Backpack:GetChildren()) do
      if tool:IsA("Tool") then
           tool.Parent = game:GetService("Players").LocalPlayer.Character -- I didn't use Equip because the Equip function unequips any other tools in your character.
      end
  end
-  	end    
-})
-
-Tab:AddButton({
-	Name = "Drop tools",
-	Callback = function()
-      		for i,v in pairs(game.Players.LocalPlayer.Backpack:GetDescendants()) do
+end
+if Value == "Drop tools" then
+for i,v in pairs(game.Players.LocalPlayer.Backpack:GetDescendants()) do
    if v:IsA("Tool")  then
     v.Parent = game.Players.LocalPlayer.Character
     v.Parent = game.Workspace
 end
 end
-  	end    
+end
+if Value == "Delete tools" then
+local Player = game:GetService("Players").LocalPlayer
+local Backpack = Player.Backpack
+local Character = Player.Character
+
+for _,v in pairs(Backpack:GetChildren()) do
+   if v:IsA("Tool") or v:IsA("HopperBin") then
+       v:Destroy()
+   end
+end
+
+for _,v in pairs(Character:GetChildren()) do
+   if v:IsA("Tool") or v:IsA("HopperBin") then
+       v:Destroy()
+   end 
+end
+end
+	end
 })
 
 Tab:AddButton({
