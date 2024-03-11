@@ -1034,7 +1034,6 @@ end
 Tab:AddButton({
  Name = "Big Bang Technique",
  Callback = function()
- Notification:Notify(
     local LP = game.Players.LocalPlayer
 repeat wait() until LP.Character
 for i,v in pairs(LP.Backpack:GetChildren()) do
