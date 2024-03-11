@@ -1,4 +1,3 @@
-
 local OrionLib = loadstring(game:HttpGet(('https://raw.githubusercontent.com/ionlyusegithubformcmods/1-Line-Scripts/main/Mobile%20Friendly%20Orion')))()
 
 local Window = OrionLib:MakeWindow({Name = "BendyHubX", HidePremium = false, SaveConfig = true, ConfigFolder = "OrionTest"})
@@ -16,7 +15,7 @@ local Section = Tab:AddSection({
 Tab:AddDropdown({
 	Name = "Tools control",
 	Default = "1",
-	Options = {"Equip tools", "Drop tools", "Delete tools"},
+	Options = {"Equip tools", "Drop tools", "Delete tools", "Grip tools"},
 	Callback = function(Value)
 		if Value == "Equip tools" the
 for _, tool in ipairs(game:GetService("Players").LocalPlayer.Backpack:GetChildren()) do
@@ -49,6 +48,15 @@ for _,v in pairs(Character:GetChildren()) do
        v:Destroy()
    end 
 end
+end
+if Value == "Grip tools" then
+  local player = game.Players.LocalPlayer
+  for _, tool in ipairs(player.Backpack:GetChildren()) do
+    if tool:IsA("Tool") then
+      tool.GripPos = Vector3.new(math.random(-15, 30), math.random(-5, 2), math.random(-15, 30)) 
+    end
+  end
+  wait() 
 end
 	end
 })
@@ -507,15 +515,27 @@ end
 Tab:AddButton({
  Name = "Bombing",
  Callback = function()
-while wait() do
-        local args = {
-    [1] = CFrame.new(-22.66668128967285, 72.62158203125, 4.9330596923828125, -0.145858496427536, -0.14605703949928284, 0.9784644842147827, -0.041150905191898346, 0.9890814423561096, 0.1415075957775116, -0.988449215888977, -0.019624613225460052, -0.15027625858783722),
-    [2] = Vector3.new(-2027.2381591796875, -144.80938720703125, -353.1065979003906),
+local LP = game.Players.LocalPlayer
+repeat wait() until LP.Character
+for i,v in pairs(LP.Backpack:GetChildren()) do
+   if v.Name == "milk tool" then
+       v.Parent = LP.Character
+   end
+end
+
+while true do
+wait(0.1)
+local mouse = game:GetService("Players").LocalPlayer:GetMouse()
+local clickPosition = mouse.Hit.Position
+
+local args = {
+    [1] = CFrame.new(clickPosition),
+    [2] = Vector3.new(clickPosition),
     [3] = false
 }
 
 game:GetService("Players").LocalPlayer.Character:FindFirstChild("milk tool").SpawnGrenade:FireServer(unpack(args))
-   end    
+end
 end
 })
 
@@ -524,18 +544,74 @@ local Section = Tab:AddSection({
 })
 
 Tab:AddButton({
+ Name = "Get cola",
+ Callback = function()
+        last_pick_sin_mrazy = game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame 
+
+game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(-23, 52, -57)
+task.wait()
+local player = game.Players.LocalPlayer
+local character = player.Character or player.CharacterAdded:Wait()
+local humanoidRootPart = character:WaitForChild("HumanoidRootPart")
+local actionRadius = 2
+
+game:GetService("CoreGui").PurchasePrompt.Enabled = false
+
+for i, v in pairs(workspace:GetDescendants()) do
+    if v:IsA("ClickDetector") then
+        local objectPosition = v.Parent.Position
+        local playerPosition = humanoidRootPart.Position
+        local distance = (objectPosition - playerPosition).magnitude 
+
+        if distance <= actionRadius then
+            fireclickdetector(v)
+        end
+    end
+end
+task.wait(0.1)
+for i = 1, 10 do
+    wait()
+game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(-25, 56, -58)
+end
+task.wait(0.1)
+game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(-25, 50, -58)
+task.wait(0.1)
+game. Players.LocalPlayer.Character.HumanoidRootPart.CFrame = last_pick_sin_mrazy
+   end    
+})
+
+Tab:AddButton({
  Name = "Bombing",
  Callback = function()
-while wait() do
-        local args = {
-    [1] = CFrame.new(-47.86222839355469, 48.7499885559082, -47.665199279785156, -0.2976866662502289, 0.004063588101416826, 0.9546549916267395, 1.2553194039810478e-08, 0.9999909400939941, -0.0042565613985061646, -0.9546636343002319, -0.0012671096483245492, -0.2976839542388916),
-    [2] = Vector3.new(-56.46669006347656, 44.25, 15.805294036865234),
+local LP = game.Players.LocalPlayer
+repeat wait() until LP.Character
+for i,v in pairs(LP.Backpack:GetChildren()) do
+   if v.Name == "cola v7" then
+       v.Parent = LP.Character
+   end
+end
+
+while true do
+wait(0.1)
+    local mouse = game:GetService("Players").LocalPlayer:GetMouse()
+local clickPosition = mouse.Hit.Position
+
+local args = {
+    [1] = CFrame.new(clickPosition),
+    [2] = Vector3.new(clickPosition),
     [3] = false
 }
 
 game:GetService("Players").LocalPlayer.Character:FindFirstChild("cola v7").SpawnGrenade:FireServer(unpack(args))
-   end    
 end
+end
+})
+
+Tab:AddButton({
+ Name = "Nuke server",
+ Callback = function()
+        
+   end    
 })
 
 local Section = Tab:AddSection({
