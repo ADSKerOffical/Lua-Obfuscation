@@ -17,7 +17,7 @@ Tab:AddDropdown({
 	Default = "1",
 	Options = {"Equip tools", "Drop tools", "Delete tools", "Grip tools"},
 	Callback = function(Value)
-		if Value == "Equip tools" the
+		if Value == "Equip tools" then
 for _, tool in ipairs(game:GetService("Players").LocalPlayer.Backpack:GetChildren()) do
      if tool:IsA("Tool") then
           tool.Parent = game:GetService("Players").LocalPlayer.Character -- I didn't use Equip because the Equip function unequips any other tools in your character.
