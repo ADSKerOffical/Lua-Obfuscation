@@ -928,6 +928,13 @@ Tab:AddTextbox({
  Default = "Input",
  TextDisappear = true,
  Callback = function(Value)
+local LP = game.Players.LocalPlayer
+repeat wait() until LP.Character
+for i,v in pairs(LP.Backpack:GetChildren()) do
+   if v.Name == "Timestop" then
+       v.Parent = LP.Character
+   end
+end
   for i = 1, Value do
 game:GetService("Players").LocalPlayer.Character.Timestop.Stop:FireServer()
  end   
@@ -937,9 +944,19 @@ end
 Tab:AddButton({
  Name = "Spam guards",
  Callback = function()
+local LP = game.Players.LocalPlayer
+repeat wait() until LP.Character
+for i,v in pairs(LP.Backpack:GetChildren()) do
+   if v.Name == "Bodyguards" then
+       v.Parent = LP.Character
+   end
+end
+
+local mouse = game:GetService("Players").LocalPlayer:GetMouse()
+local clickPosition = mouse.Hit.Position
  while wait() do
         local args = {
-    [1] = Vector3.new(-39.894683837890625, 44.25, 32.47625732421875)
+    [1] = Vector3.new(clickPosition)
 }
 
 game:GetService("Players").LocalPlayer.Character.Bodyguards.Summon:FireServer(unpack(args))
@@ -966,13 +983,18 @@ end
 Tab:AddButton({
  Name = "Spam ghosting bomb",
  Callback = function()
- Notification:Notify(
-    {Title = "BendyHubX", Description = "Put on a heart bomb"},
-    {OutlineColor = Color3.fromRGB(80, 80, 80),Time = 5, Type = "default"}
-)
+ local LP = game.Players.LocalPlayer
+repeat wait() until LP.Character
+for i,v in pairs(LP.Backpack:GetChildren()) do
+   if v.Name == "GhostlyV low cds" then
+       v.Parent = LP.Character
+   end
+end
+    local mouse = game:GetService("Players").LocalPlayer:GetMouse()
+local clickPosition = mouse.Hit.Position
         while wait() do
 local args = {
-    [1] = Vector3.new(-62.607357025146484, 44.25, 35.89112091064453)
+    [1] = Vector3.new(clickPosition)
 }
 
 game:GetService("Players").LocalPlayer.Character:FindFirstChild("GhostlyV low cds").Summon:FireServer(unpack(args))
@@ -1013,9 +1035,13 @@ Tab:AddButton({
  Name = "Big Bang Technique",
  Callback = function()
  Notification:Notify(
-    {Title = "BendyHubX", Description = "Put on a bomb"},
-    {OutlineColor = Color3.fromRGB(80, 80, 80),Time = 5, Type = "default"}
-)
+    local LP = game.Players.LocalPlayer
+repeat wait() until LP.Character
+for i,v in pairs(LP.Backpack:GetChildren()) do
+   if v.Name == "Uncanny Bombs" then
+       v.Parent = LP.Character
+   end
+end
         while game:GetService("RunService").RenderStepped:wait() do
 a = math.random(-300, 300)
 b = math.random(-50, 100)
@@ -1088,12 +1114,11 @@ Tab:AddToggle({
 		if polh == true then
 		local plr = game.Players.LocalPlayer
 local char = plr.Character
-SwEF = 1e9999 * 1e9999 * 1e99
   
   for _, child in pairs(char:GetChildren()) do
     if child:IsA("BasePart") then
       child.Massless = false
-      child.CustomPhysicalProperties = PhysicalProperties.new(SwEF, SwEF, SwEF) 
+      child.CustomPhysicalProperties = PhysicalProperties.new(math.huge, math.huge, math.huge) 
     end
   end
 		end
