@@ -1088,17 +1088,56 @@ end
    end    
 })
 
-Tab:AddButton({
- Name = "Break server",
- Callback = function()
- Notification:Notify(
-    {Title = "BendyHubX", Description = "Put on a stop time"},
-    {OutlineColor = Color3.fromRGB(80, 80, 80),Time = 5, Type = "default"}
-)
-        for i = 1, 3000 do
+Tab:AddDropdown({
+	Name = "Break server",
+	Default = "1",
+	Options = {"Break server v1", "Break server v2", "Break server v3"},
+	Callback = function(Value)
+		if Value == "Break server v1" then
+		local LP = game.Players.LocalPlayer
+repeat wait() until LP.Character
+for i,v in pairs(LP.Backpack:GetChildren()) do
+   if v.Name == "Timestop" then
+       v.Parent = LP.Character
+   end
+end
+		for i = 1, 3000 do
 game:GetService("Players").LocalPlayer.Character.Timestop.Stop:FireServer()
 end
-   end    
+		end
+		if Value == "Break server v2" then
+		local LP = game.Players.LocalPlayer
+repeat wait() until LP.Character
+for i,v in pairs(LP.Backpack:GetChildren()) do
+   if v.Name == "Wise Mystical Tree" then
+       v.Parent = LP.Character
+   end
+end
+		for _, npc in ipairs(workspace:GetChildren()) do
+            local args = {
+    [1] = npc
+}
+
+game:GetService("Players").LocalPlayer.Character:FindFirstChild("Wise Mystical Tree").Create:FireServer(unpack(args))
+    end
+		end
+		if Value == "Break server v3" then
+		local LP = game.Players.LocalPlayer
+repeat wait() until LP.Character
+for i,v in pairs(LP.Backpack:GetChildren()) do
+   if v.Name == "Winning Knife" then
+       v.Parent = LP.Character
+   end
+end
+		for _, npc in ipairs(workspace:GetChildren()) do
+            local args = {
+    [1] = npc
+}
+
+game:GetService("Players").LocalPlayer.Character:FindFirstChild("Winning Knife").Throw:FireServer(unpack(args))
+    end
+		end
+	end    
 })
 
 local Section = Tab:AddSection({
