@@ -840,52 +840,31 @@ Tab:AddButton({
   	end    
 })
 
-local NotificationHolder = loadstring(game:HttpGet("https://raw.githubusercontent.com/BocusLuke/UI/main/STX/Module.Lua"))()
-
-local Notification = loadstring(game:HttpGet("https://raw.githubusercontent.com/BocusLuke/UI/main/STX/Client.Lua"))()
-
 local Tab = Window:MakeTab({
-                    Name = "Bendy scripts",
-                    Icon = "http://www.roblox.com/asset/?id=4483345998",
-                    PremiumOnly = false
-                })
-
-Tab:AddButton({
- Name = "Get Script tool",
- Callback = function()
- last_pick_sin_mrazy = game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame 
-
-game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(-23.423648834228516, 47.24998474121094, 5.212663650512695)
-task.wait()
-local player = game.Players.LocalPlayer -- Получаем локального игрока
-local character = player.Character or player.CharacterAdded:Wait() -- Получаем персонажа игрока
-local humanoidRootPart = character:WaitForChild("HumanoidRootPart") -- Получаем корневую часть персонажа
-local actionRadius = 2 -- Устанавливаем радиус действия
-
-game:GetService("CoreGui").PurchasePrompt.Enabled = false
-
-for i, v in pairs(workspace:GetDescendants()) do
-    if v:IsA("ClickDetector") then
-        local objectPosition = v.Parent.Position -- Позиция объекта с ClickDetector
-        local playerPosition = humanoidRootPart.Position -- Позиция локального игрока
-        local distance = (objectPosition - playerPosition).magnitude -- Расстояние между игроком и объектом
-
-        if distance <= actionRadius then -- Если объект находится в радиусе действия
-            fireclickdetector(v)
-        end
-    end
-end
-task.wait(0.1)
-game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(-25.52592658996582, 55.2499885559082, 23.274351119995117)
-task.wait(0.1)
-game. Players.LocalPlayer.Character.HumanoidRootPart.CFrame = last_pick_sin_mrazy
-   end
+	Name = "Bendy Scripts",
+	Icon = "rbxassetid://4483345998",
+	PremiumOnly = false
 })
-                
-Tab:AddButton({
- Name = "Bazooka apocalypse",
- Callback = function()
-        local LP = game.Players.LocalPlayer
+
+Tab:AddDropdown({
+	Name = "Bazooka",
+	Default = "1",
+	Options = {"Bazooka Minigun", "Death Explosion"},
+	Callback = function(Value)
+		if Value == "Bazooka Minigun" then
+		while true do wait()
+local player = game.Players.LocalPlayer
+  local mouse = player:GetMouse()
+    local targetPosition = mouse.Hit.Position
+local args = {
+    [1] = Vector3.new(targetPosition.X, targetPosition.Y, targetPosition.Z)
+}
+
+game:GetService("Players").LocalPlayer.Character.Bazooka.Shoot:FireServer(unpack(args))
+end
+		end
+		if Value == "Death Explosion" then
+		local LP = game.Players.LocalPlayer
 repeat wait() until LP.Character
 for i,v in pairs(LP.Backpack:GetChildren()) do
    if v.Name == "Bazooka" then
@@ -901,73 +880,85 @@ local args = {
 }
 
 game:GetService("Players").LocalPlayer.Character.Bazooka.ChangeValue:FireServer(unpack(args))
-   end    
+		end
+	end    
 })
 
-Tab:AddButton({
- Name = "Mega forcefield",
- Callback = function()
-        local args = {
-    [1] = true
-}
-
-game:GetService("Players").LocalPlayer.Character:FindFirstChild("Forcefield Generator").Switch:FireServer(unpack(args))
-
-while wait() do
+Tab:AddDropdown({
+	Name = "Quake Hammer",
+	Default = "1",
+	Options = {"Spam Earthquake"},
+	Callback = function(Value)
+		if Value == "Quake Hammer" then
+		while true do wait(.1)
+local player = game.Players.LocalPlayer
+  local mouse = player:GetMouse()
+    local targetPosition = mouse.Hit.Position
 local args = {
-    [1] = "positive"
+    [1] = Vector3.new(targetPosition.X, targetPosition.Y, targetPosition.Z),
+    [2] = workspace:WaitForChild("Basecharcha1")
 }
 
-game:GetService("Players").LocalPlayer.Character:FindFirstChild("Forcefield Generator").Resize:FireServer(unpack(args))
+game:GetService("Players").LocalPlayer.Character:FindFirstChild("Quake Hammer").Attack:FireServer(unpack(args))
 end
-   end    
+		end
+	end    
 })
 
-Tab:AddTextbox({
- Name = "Multi Stop time",
- Default = "Input",
- TextDisappear = true,
- Callback = function(Value)
-local LP = game.Players.LocalPlayer
-repeat wait() until LP.Character
-for i,v in pairs(LP.Backpack:GetChildren()) do
-   if v.Name == "Timestop" then
-       v.Parent = LP.Character
-   end
-end
-  for i = 1, Value do
-game:GetService("Players").LocalPlayer.Character.Timestop.Stop:FireServer()
- end   
-end
-})
-
-Tab:AddButton({
- Name = "Spam guards",
- Callback = function()
-local LP = game.Players.LocalPlayer
-repeat wait() until LP.Character
-for i,v in pairs(LP.Backpack:GetChildren()) do
-   if v.Name == "Bodyguards" then
-       v.Parent = LP.Character
-   end
-end
-
-local mouse = game:GetService("Players").LocalPlayer:GetMouse()
-local clickPosition = mouse.Hit.Position
- while wait() do
-        local args = {
-    [1] = Vector3.new(clickPosition)
+Tab:AddDropdown({
+	Name = "Winning Knife",
+	Default = "1",
+	Options = {"Spam Throw", "Spam Barrage", "Laugh"},
+	Callback = function(Value)
+		if Value == "Spam Throw" then
+		while true do wait()
+local player = game.Players.LocalPlayer
+  local mouse = player:GetMouse()
+    local targetPosition = mouse.Hit.Position
+local args = {
+    [1] = Vector3.new(targetPosition.X, targetPosition.Y, targetPosition.Z)
 }
 
-game:GetService("Players").LocalPlayer.Character.Bodyguards.Summon:FireServer(unpack(args))
+game:GetService("Players").LocalPlayer.Character:FindFirstChild("Winning Knife").Throw:FireServer(unpack(args))
 end
-   end    
+		end
+		if Value == "Spam Barrage" then
+		while true do wait()
+local player = game.Players.LocalPlayer
+  local mouse = player:GetMouse()
+    local targetPosition = mouse.Hit.Position
+local args = {
+    [1] = Vector3.new(targetPosition.X, targetPosition.Y, targetPosition.Z)
+}
+
+game:GetService("Players").LocalPlayer.Character:FindFirstChild("Winning Knife").Barrage:FireServer(unpack(args))
+end
+		end
+		if Value == "Laugh" then
+		game:GetService("Players").LocalPlayer.Backpack["Winning Knife"].Emote:FireServer()
+		end
+	end    
 })
 
-Tab:AddButton({
- Name = "Mega wise mystical",
- Callback = function()
-        while wait() do
+Tab:AddDropdown({
+	Name = "Tree Tool",
+	Default = "1",
+	Options = {"Spam Trees", "Super Wise Mystical"},
+	Callback = function(Value)
+		if Value == "Spam Trees" then
+		while true do wait()
+local player = game.Players.LocalPlayer
+  local mouse = player:GetMouse()
+    local targetPosition = mouse.Hit.Position
+local args = {
+    [1] = Vector3.new(targetPosition.X, targetPosition.Y, targetPosition.Z)
+}
+
+game:GetService("Players").LocalPlayer.Character:FindFirstChild("Wise Mystical Tree").Create:FireServer(unpack(args))
+end
+		end
+		if Value == "Super Wise Mystical" then
+		while wait() do
 a = math.random(-300, 300)
 b = math.random(-50, 100)
 c = math.random(-300, 300)
@@ -977,13 +968,84 @@ local args = {
 
 game:GetService("Players").LocalPlayer.Character:FindFirstChild("Wise Mystical Tree").Create:FireServer(unpack(args))
 end
-   end    
+		end
+	end    
 })
 
-Tab:AddButton({
- Name = "Spam ghosting bomb",
- Callback = function()
- local LP = game.Players.LocalPlayer
+Tab:AddDropdown({
+	Name = "Uncanny Bombs",
+	Default = "1",
+	Options = {"Spam Uncanny", "Spam Canny", "Spam Supercanny", "Supernova technique"},
+	Callback = function(Value)
+		if Value == "Spam Uncanny" then
+		while true do wait()
+local player = game.Players.LocalPlayer
+  local mouse = player:GetMouse()
+    local targetPosition = mouse.Hit.Position
+local args = {
+    [1] = Vector3.new(targetPosition.X, targetPosition.Y, targetPosition.Z),
+    [2] = "uncanny"
+}
+
+game:GetService("Players").LocalPlayer.Character:FindFirstChild("Uncanny Bombs").Plant:FireServer(unpack(args))
+end
+		end
+		if Value == "Spam Canny" then
+		while true do wait()
+local player = game.Players.LocalPlayer
+  local mouse = player:GetMouse()
+    local targetPosition = mouse.Hit.Position
+local args = {
+    [1] = Vector3.new(targetPosition.X, targetPosition.Y, targetPosition.Z),
+    [2] = "canny"
+}
+
+game:GetService("Players").LocalPlayer.Character:FindFirstChild("Uncanny Bombs").Plant:FireServer(unpack(args))
+end
+		end
+		if Value == "Spam Supercanny" then
+		while true do wait()
+local player = game.Players.LocalPlayer
+  local mouse = player:GetMouse()
+    local targetPosition = mouse.Hit.Position
+local args = {
+    [1] = Vector3.new(targetPosition.X, targetPosition.Y, targetPosition.Z),
+    [2] = "supercanny"
+}
+
+game:GetService("Players").LocalPlayer.Character:FindFirstChild("Uncanny Bombs").Plant:FireServer(unpack(args))
+end
+		end
+		if Value == "Supernova technique" then
+		local LP = game.Players.LocalPlayer
+repeat wait() until LP.Character
+for i,v in pairs(LP.Backpack:GetChildren()) do
+   if v.Name == "Uncanny Bombs" then
+       v.Parent = LP.Character
+   end
+end
+        while game:GetService("RunService").RenderStepped:wait() do
+a = math.random(-300, 300)
+b = math.random(-50, 100)
+c = math.random(-300, 300)
+local args = {
+    [1] = Vector3.new(a, b, c),
+    [2] = "supercanny"
+}
+
+game:GetService("Players").LocalPlayer.Character:FindFirstChild("Uncanny Bombs").Plant:FireServer(unpack(args))
+end
+		end
+	end    
+})
+
+Tab:AddDropdown({
+	Name = "Ghosting Bomb",
+	Default = "1",
+	Options = {"Spam Ghosting Bomb"},
+	Callback = function(Value)
+		if Value == "Spam Ghosting Bomb" then
+		local LP = game.Players.LocalPlayer
 repeat wait() until LP.Character
 for i,v in pairs(LP.Backpack:GetChildren()) do
    if v.Name == "GhostlyV low cds" then
@@ -994,19 +1056,98 @@ end
 local clickPosition = mouse.Hit.Position
         while wait() do
 local args = {
-    [1] = Vector3.new(clickPosition)
+    [1] = Vector3.new(clickPosition.X, clickPosition.Y, clickPosition.Z)
 }
 
 game:GetService("Players").LocalPlayer.Character:FindFirstChild("GhostlyV low cds").Summon:FireServer(unpack(args))
 end
-   end    
+		end
+	end    
 })
 
-Tab:AddToggle({
- Name = "Kill all demonic duck",
- Default = fasle,
- Callback = function(Value)
-local LP = game.Players.LocalPlayer
+Tab:AddDropdown({
+	Name = "Guardians",
+	Default = "1",
+	Options = {"Spam Guardians"},
+	Callback = function(Value)
+		if Value == "Spam Guardians" then
+		local LP = game.Players.LocalPlayer
+repeat wait() until LP.Character
+for i,v in pairs(LP.Backpack:GetChildren()) do
+   if v.Name == "Bodyguards" then
+       v.Parent = LP.Character
+   end
+end
+
+local mouse = game:GetService("Players").LocalPlayer:GetMouse()
+local targetPosition = mouse.Hit.Position
+ while wait() do
+        local args = {
+    [1] = Vector3.new(targetPosition.X, targetPosition.Y, targetPosition.Z)
+}
+
+game:GetService("Players").LocalPlayer.Character.Bodyguards.Summon:FireServer(unpack(args))
+end
+		end
+	end    
+})
+
+Tab:AddDropdown({
+	Name = "Forcefield",
+	Default = "1",
+	Options = {"Resize Forcefield", "Damage mode", "Knockback mode"},
+	Callback = function(Value)
+		if Value == "Resize Forcefield" then
+		while wait() do
+local args = {
+    [1] = "positive"
+}
+
+game:GetService("Players").LocalPlayer.Character:FindFirstChild("Forcefield Generator").Resize:FireServer(unpack(args))
+end
+		end
+		if Value == "Damage mode" then
+		local args = {
+    [1] = true
+}
+
+game:GetService("Players").LocalPlayer.Character:FindFirstChild("Forcefield Generator").Switch:FireServer(unpack(args))
+		end
+		if Value == "Knockback mode" then
+		local args = {
+    [1] = false
+}
+
+game:GetService("Players").LocalPlayer.Character:FindFirstChild("Forcefield Generator").Switch:FireServer(unpack(args))
+		end
+	end    
+})
+
+Tab:AddDropdown({
+	Name = "Stop Time",
+	Default = "1",
+	Options = {"Stop Time"},
+	Callback = function(Value)
+	if Value == "Stop Time" then
+		local LP = game.Players.LocalPlayer
+repeat wait() until LP.Character
+for i,v in pairs(LP.Backpack:GetChildren()) do
+   if v.Name == "Timestop" then
+       v.Parent = LP.Character
+   end
+end
+game:GetService("Players").LocalPlayer.Character.Timestop.Stop:FireServer()
+  end
+	end    
+})
+
+Tab:AddDropdown({
+	Name = "Demonic Duck",
+	Default = "1",
+	Options = {"Kill All"},
+	Callback = function(Value)
+		if Value == "Kill All" then
+		local LP = game.Players.LocalPlayer
 repeat wait() until LP.Character
 for i,v in pairs(LP.Backpack:GetChildren()) do
    if v.Name == "Evil Duck" then
@@ -1028,31 +1169,8 @@ for i,v in pairs(game:GetService("Players"):GetChildren()) do
 end
     task.wait(0.1)
 end
-   end    
-})
-
-Tab:AddButton({
- Name = "Big Bang Technique",
- Callback = function()
-    local LP = game.Players.LocalPlayer
-repeat wait() until LP.Character
-for i,v in pairs(LP.Backpack:GetChildren()) do
-   if v.Name == "Uncanny Bombs" then
-       v.Parent = LP.Character
-   end
-end
-        while game:GetService("RunService").RenderStepped:wait() do
-a = math.random(-300, 300)
-b = math.random(-50, 100)
-c = math.random(-300, 300)
-local args = {
-    [1] = Vector3.new(a, b, c),
-    [2] = "supercanny"
-}
-
-game:GetService("Players").LocalPlayer.Character:FindFirstChild("Uncanny Bombs").Plant:FireServer(unpack(args))
-end
-   end    
+		end
+	end    
 })
 
 Tab:AddButton({
@@ -1179,20 +1297,18 @@ Tab:AddToggle({
 	Name = "Anti Stop Time",
 	Default = false,
 	Callback = function(Value)
-getgenv().TpWalking = Value
-getgenv().Speed = 2
-
-local speaker = game:GetService("Players").LocalPlayer
-local chr = speaker.Character
-local hum = chr and chr:FindFirstChildWhichIsA("Humanoid")
-local hb = game:GetService("RunService").Heartbeat
-while getgenv().TpWalking and chr and hum and hum.Parent do
-    local delta = hb:Wait()
-    if hum.MoveDirection.Magnitude > 0 then
-        chr:TranslateBy(hum.MoveDirection * tonumber(getgenv().Speed) * delta * 10)
-    else
-        chr:TranslateBy(hum.MoveDirection * delta * 100000)
+	local AST = Value
+while AST do
+  wait()
+for i, v in pairs(game:GetService("Players"):GetPlayers()) do
+   task.spawn(function()
+    for i, x in next, v.Character:GetDescendants() do
+     if x.Name ~= floatName and x:IsA("BasePart") and x.Anchored then
+      x.Anchored = false
+     end
     end
+   end)
+end
 end
 	end    
 })
@@ -1227,20 +1343,44 @@ Tab:AddToggle({
 	Default = false,
 	Callback = function(Value)
 	Seey = Value
-		local LP = game.Players.LocalPlayer
-repeat wait() until LP.Character
+ while Seey do task.wait()
+ local LP = game.Players.LocalPlayer
 for i,v in pairs(LP.Backpack:GetChildren()) do
    if v.Name == "Cheese" then
        v.Parent = LP.Character
    end
 end
-while Seey do
-   wait()
    for i,v in pairs (LP.Character:GetChildren()) do
        if v.Name == "Cheese" then
            v:Activate()
        end
    end
 end
+	end    
+})
+
+Tab:AddToggle({
+	Name = "Auto Detonate Bombs",
+	Default = false,
+	Callback = function(Value)
+	local ADB = Value
+	    while ADB do
+	wait(0.3)
+	game:GetService("Players").LocalPlayer.Backpack["Uncanny Bombs"].Detonate:FireServer()
+        end
+	end    
+})
+
+Tab:AddToggle({
+	Name = "Anti Shocker",
+	Default = false,
+	Callback = function(Value)
+	local ASh = Value
+	while ASh do task.wait()
+local player = game.Players.LocalPlayer
+    if player.Character.Humanoid.Sit then
+        player.Character.Humanoid.Sit = fasle
+   end
+  end
 	end    
 })
