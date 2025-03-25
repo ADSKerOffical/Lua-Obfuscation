@@ -346,7 +346,6 @@ Tab:AddToggle({
  Name = "Server breaker",
  Default = false,
  Callback = function(Value)
-  game:GetService("CoreGui").PurchasePrompt.Enabled = false
 _G.Lag = Value
 while _G.Lag do
 for i,v in pairs(workspace:GetDescendants()) do
